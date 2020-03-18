@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hyxml>
+<hyxml type="Model">
+  <automaton name="default_automaton">
+    <variable name="x" scope="LOCAL_DATA" type="Real"/>
+    <variable name="y" scope="LOCAL_DATA" type="Real"/>
+    <variable name="vx" scope="LOCAL_DATA" type="Real"/>
+    <variable name="vy" scope="LOCAL_DATA" type="Real"/>
+    <mode id="0" initial="True" name="Zone1">
+      <dai equation="x_dot = vx"/>
+      <dai equation="y_dot = vy"/>
+      <dai equation="vx_dot = -1.2*vx+0.1*vy-0.1"/>
+      <dai equation="vy_dot = 0.1*vx-1.2*vy+1.2"/>
+      <dai equation="x_out = x"/>
+      <dai equation="y_out = y"/>
+      <invariant equation="x&lt;1 || vx&lt;=0"/>
+      <invariant equation="y&lt;1 || vy&lt;=0"/>
+    </mode>
+    <mode id="1" initial="False" name="Zone2">
+      <dai equation="x_dot = vx"/>
+      <dai equation="y_dot = vy"/>
+      <dai equation="vx_dot = -1.2*vx+0.1*vy-4.8"/>
+      <dai equation="vy_dot = 0.1*vx-1.2*vy+0.4"/>
+      <dai equation="x_out = x"/>
+      <dai equation="y_out = y"/>
+      <invariant equation="x&gt;1 || vx&gt;=0"/>
+      <invariant equation="y&lt;1 || vy&lt;=0"/>
+    </mode>
+    <mode id="2" initial="False" name="Zone3">
+      <dai equation="x_dot = vx"/>
+      <dai equation="y_dot = vy"/>
+      <dai equation="vx_dot = -1.2*vx+0.1*vy+2.4"/>
+      <dai equation="vy_dot = 0.1*vx-1.2*vy-0.2"/>
+      <dai equation="x_out = x"/>
+      <dai equation="y_out = y"/>
+      <invariant equation="y&gt;1 || vy&gt;=0"/>
+      <invariant equation="x&lt;1 || vx&lt;=0"/>
+    </mode>
+    <mode id="3" initial="False" name="Zone4">
+      <dai equation="x_dot = vx"/>
+      <dai equation="y_dot = vy"/>
+      <dai equation="vx_dot = -1.2*vx+0.1*vy+3.9"/>
+      <dai equation="vy_dot = 0.1*vx-1.2*vy-3.9"/>
+      <dai equation="x_out = x"/>
+      <dai equation="y_out = y"/>
+      <invariant equation="y&gt;1 || vy&gt;=0"/>
+      <invariant equation="x&gt;1 || vx&gt;=0"/>
+    </mode>
+    <transition destination="1" id="0" source="0">
+      <guard equation="x&gt;=1 &amp;&amp; vx&gt;0"/>
+    </transition>
+    <transition destination="0" id="1" source="1">
+      <guard equation="x&lt;=1 &amp;&amp; vx&lt;0"/>
+    </transition>
+    <transition destination="3" id="2" source="1">
+      <guard equation="y&gt;=1 &amp;&amp; vy&gt;0"/>
+    </transition>
+    <transition destination="1" id="3" source="3">
+      <guard equation="y&lt;=1 &amp;&amp; vy&lt;0"/>
+    </transition>
+    <transition destination="2" id="4" source="0">
+      <guard equation="y&gt;=1 &amp;&amp; vy&gt;0"/>
+    </transition>
+    <transition destination="0" id="5" source="2">
+      <guard equation="y&lt;=1 &amp;&amp; vy&lt;0"/>
+    </transition>
+    <transition destination="3" id="6" source="2">
+      <guard equation="x&gt;=1 &amp;&amp; vx&gt;0"/>
+    </transition>
+    <transition destination="2" id="7" source="3">
+      <guard equation="x&lt;=1 &amp;&amp; vx&lt;0"/>
+    </transition>
+  </automaton>
+  <composition automata="default_automaton"/>
+  <property initialSet="Zone1: x&gt;=0.5&amp;&amp;x&lt;=0.55&amp;&amp;y&gt;=0.5&amp;&amp;y&lt;=0.55&amp;&amp;vx==0&amp;&amp;vy==0" name="Property1" type="0" unsafeSet="x&gt;=5.0">
+    <parameters kvalue="2000.0" timehorizon="2.0" timestep="0.01"/>
+  </property>
+</hyxml>

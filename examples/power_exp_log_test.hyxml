@@ -1,0 +1,27 @@
+<hyxml type="Model">
+  <automaton name="default_automaton">
+    <variable name="x" scope="LOCAL_DATA" type="Real" />
+    <variable name="y" scope="LOCAL_DATA" type="Real" />
+    <mode id="0" initial="True" name="A">
+      <dai equation="x_dot= 1" />
+      <dai equation="y_dot= -y + pow(0.5, x) + 5 + exp(-x)" />
+      <dai equation="x_out= x" />
+      <dai equation="y_out= y" />
+      <invariant equation="x&lt;5.0" />
+    </mode>
+    <mode id="1" initial="False" name="B">
+      <dai equation="x_dot= 1" />
+      <dai equation="y_dot= -y + pow(x, -5) + log(x) - 0.035 + exp(-x)" />
+      <dai equation="x_out= x" />
+      <dai equation="y_out= y" />
+      <invariant equation="x&gt;5.0" />
+    </mode>
+    <transition destination="1" id="0" source="0">
+      <guard equation="x&gt;=5.0" />
+    </transition>
+  </automaton>
+  <composition automata="default_automaton" />
+  <property initialSet="A:x&gt;=1.0&amp;&amp;x&lt;=2.0&amp;&amp;y&gt;=9.0&amp;&amp;y&lt;=10.1" name="Property1" type="Safety" unsafeSet="x&gt;=100000">
+    <parameters kvalue="2000.0" timehorizon="10.0" timestep="0.01" />
+  </property>
+</hyxml>

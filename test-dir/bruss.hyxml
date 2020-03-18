@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hyxml>
+<hyxml type="Model">
+  <automaton name="default_automaton">
+    <variable scope="LOCAL_DATA" type="Real" name="x"/>
+    <variable scope="LOCAL_DATA" type="Real" name="y"/>
+    <mode initial="True" id="0" name="Brussellator">
+      <dai equation="x_dot = 1+x*x*y-2.5*x"/>
+      <dai equation="y_dot = 1.5*x-x*x*y"/>
+      <dai equation="x_out = x"/>
+      <dai equation="y_out = y"/>
+    </mode>
+  </automaton>
+  <composition automata="default_automaton"/>
+  <property unsafeSet="x&gt;=10" type="0" name="bruss_test" initialSet="Brussellator: x&gt;=2.0&amp;&amp;x&lt;=3.0&amp;&amp;y&gt;=1.0&amp;&amp;y&lt;=1.5">
+    <parameters kvalue="2000.0" timehorizon="10.0" timestep="0.01" />
+  </property>
+</hyxml>

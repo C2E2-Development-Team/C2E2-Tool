@@ -1,0 +1,573 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hyxml>
+<hyxml type="Model">
+  <automaton name="default_automaton">
+    <variable name="v" scope="LOCAL_DATA" type="Real"/>
+    <variable name="t" scope="LOCAL_DATA" type="Real"/>
+    <variable name="stim_local" scope="LOCAL_DATA" type="Real"/>
+    <thin_variable name="stim_local" scope="LOCAL_DATA" type="Real"/>
+    <mode id="0" initial="True" name="Rampup_A">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = 1"/>
+      <dai equation="v_dot = (-5190.0*v + 6228.0)*(-stim_local + v/2 + 0.13)"/>
+      <invariant equation="stim_local&lt;1.2"/>
+      <invariant equation="stim_local&lt;0.410"/>
+    </mode>
+    <mode id="1" initial="False" name="Rampup_B">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = 1"/>
+      <dai equation="v_dot = (-stim_local + 0.4)*(2295.0*stim_local - 918.0) + (-5190.0*v + 6228.0)*(-stim_local + v/2 + 0.13)"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="stim_local&lt;1.2"/>
+      <invariant equation="stim_local&gt;=0.4050"/>
+      <invariant equation="stim_local&lt;v-0.47 "/>
+    </mode>
+    <mode id="2" initial="False" name="Rampup_C">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = 1"/>
+      <dai equation="v_dot = (-1000000*stim_local + 730000.0)*(-0.002595*stim_local + 0.00189435)"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="stim_local&lt;1.2"/>
+      <invariant equation="stim_local&gt;v-0.47"/>
+      <invariant equation="stim_local&lt;0.410"/>
+    </mode>
+    <mode id="3" initial="False" name="Rampup_D">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = 1"/>
+      <dai equation="v_dot = (-1000000*stim_local + 730000.0)*(-0.002595*stim_local + 0.00189435) - (stim_local - 0.4)*(2295.0*stim_local - 918.0)"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="stim_local&lt;1.2"/>
+      <invariant equation="stim_local&gt;v-0.47"/>
+      <invariant equation="stim_local&gt;0.4"/>
+      <invariant equation="stim_local&lt;v+0.4"/>
+      <invariant equation="stim_local&lt;0.73"/>
+    </mode>
+    <mode id="4" initial="False" name="Rampup_E">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = 1"/>
+      <dai equation="v_dot = -4590.0*v*(stim_local - v/2 - 0.4) + (-1000000*stim_local + 730000.0)*(-0.002595*stim_local + 0.00189435)"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="stim_local&lt;1.2"/>
+      <invariant equation="stim_local&gt;v+0.4"/>
+      <invariant equation="stim_local&lt;0.73"/>
+    </mode>
+    <mode id="5" initial="False" name="Rampup_F">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = 1"/>
+      <dai equation="v_dot = (-2295.0*stim_local + 918.0)*(stim_local - 0.4)"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="stim_local&lt;1.2"/>
+      <invariant equation="stim_local&gt;0.73"/>
+      <invariant equation="stim_local&lt;v+0.4"/>
+    </mode>
+    <mode id="6" initial="False" name="Rampup_G">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = 1"/>
+      <dai equation="v_dot = -4590.0*v*(stim_local - v/2 - 0.4)"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="stim_local&lt;1.2"/>
+      <invariant equation="stim_local&gt;0.73"/>
+    </mode>
+    <mode id="7" initial="False" name="On_A">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = 0"/>
+      <dai equation="v_dot = (-5190.0*v + 6228.0)*(-stim_local + v/2 + 0.13)"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="t&lt;2"/>
+      <invariant equation="stim_local&lt;0.410"/>
+    </mode>
+    <mode id="8" initial="False" name="On_B">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = 0"/>
+      <dai equation="v_dot = (-stim_local + 0.4)*(2295.0*stim_local - 918.0) + (-5190.0*v + 6228.0)*(-stim_local + v/2 + 0.13)"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="t&lt;2"/>
+      <invariant equation="stim_local&gt;=0.4050"/>
+      <invariant equation="stim_local&lt;v-0.47 "/>
+    </mode>
+    <mode id="9" initial="False" name="On_C">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = 0"/>
+      <dai equation="v_dot = (-1000000*stim_local + 730000.0)*(-0.002595*stim_local + 0.00189435)"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="t&lt;2"/>
+      <invariant equation="stim_local&gt;v-0.47"/>
+      <invariant equation="stim_local&lt;0.410"/>
+    </mode>
+    <mode id="10" initial="False" name="On_D">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = 0"/>
+      <dai equation="v_dot = (-1000000*stim_local + 730000.0)*(-0.002595*stim_local + 0.00189435) - (stim_local - 0.4)*(2295.0*stim_local - 918.0)"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="t&lt;2"/>
+      <invariant equation="stim_local&gt;v-0.47"/>
+      <invariant equation="stim_local&gt;0.4"/>
+      <invariant equation="stim_local&lt;v+0.4"/>
+      <invariant equation="stim_local&lt;0.73"/>
+    </mode>
+    <mode id="11" initial="False" name="On_E">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = 0"/>
+      <dai equation="v_dot = -4590.0*v*(stim_local - v/2 - 0.4) + (-1000000*stim_local + 730000.0)*(-0.002595*stim_local + 0.00189435)"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="t&lt;2"/>
+      <invariant equation="stim_local&gt;v+0.4"/>
+      <invariant equation="stim_local&lt;0.73"/>
+    </mode>
+    <mode id="12" initial="False" name="On_F">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = 0"/>
+      <dai equation="v_dot = (-2295.0*stim_local + 918.0)*(stim_local - 0.4)"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="t&lt;2"/>
+      <invariant equation="stim_local&gt;0.73"/>
+      <invariant equation="stim_local&lt;v+0.4"/>
+    </mode>
+    <mode id="13" initial="False" name="On_G">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = 0"/>
+      <dai equation="v_dot = -4590.0*v*(stim_local - v/2 - 0.4)"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="t&lt;2"/>
+      <invariant equation="stim_local&gt;0.73"/>
+    </mode>
+    <mode id="14" initial="False" name="Rampdown_A">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = -1"/>
+      <dai equation="v_dot = (-5190.0*v + 6228.0)*(-stim_local + v/2 + 0.13)"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="stim_local&gt;0"/>
+      <invariant equation="stim_local&lt;0.410"/>
+    </mode>
+    <mode id="15" initial="False" name="Rampdown_B">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = -1"/>
+      <dai equation="v_dot = (-stim_local + 0.4)*(2295.0*stim_local - 918.0) + (-5190.0*v + 6228.0)*(-stim_local + v/2 + 0.13)"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="stim_local&gt;0"/>
+      <invariant equation="stim_local&gt;=0.40"/>
+      <invariant equation="stim_local&lt;v-0.47 "/>
+    </mode>
+    <mode id="16" initial="False" name="Rampdown_C">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = -1"/>
+      <dai equation="v_dot = (-1000000*stim_local + 730000.0)*(-0.002595*stim_local + 0.00189435)"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="stim_local&gt;0"/>
+      <invariant equation="stim_local&gt;v-0.47"/>
+      <invariant equation="stim_local&lt;0.410"/>
+    </mode>
+    <mode id="17" initial="False" name="Rampdown_D">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = -1"/>
+      <dai equation="v_dot = (-1000000*stim_local + 730000.0)*(-0.002595*stim_local + 0.00189435) - (stim_local - 0.4)*(2295.0*stim_local - 918.0)"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="stim_local&gt;0"/>
+      <invariant equation="stim_local&gt;v-0.47"/>
+      <invariant equation="stim_local&gt;0.4"/>
+      <invariant equation="stim_local&lt;v+0.4"/>
+      <invariant equation="stim_local&lt;0.73"/>
+    </mode>
+    <mode id="18" initial="False" name="Rampdown_E">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = -1"/>
+      <dai equation="v_dot = -4590.0*v*(stim_local - v/2 - 0.4) + (-1000000*stim_local + 730000.0)*(-0.002595*stim_local + 0.00189435)"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="stim_local&gt;0"/>
+      <invariant equation="stim_local&gt;v+0.4"/>
+      <invariant equation="stim_local&lt;0.73"/>
+    </mode>
+    <mode id="19" initial="False" name="Rampdown_F">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = -1"/>
+      <dai equation="v_dot = (-2295.0*stim_local + 918.0)*(stim_local - 0.4)"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="stim_local&gt;0"/>
+      <invariant equation="stim_local&gt;0.73"/>
+      <invariant equation="stim_local&lt;v+0.4"/>
+    </mode>
+    <mode id="20" initial="False" name="Rampdown_G">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = -1"/>
+      <dai equation="v_dot = -4590.0*v*(stim_local - v/2 - 0.4)"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="stim_local&gt;0"/>
+      <invariant equation="stim_local&gt;0.73"/>
+    </mode>
+    <mode id="21" initial="False" name="Off_A">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = 0"/>
+      <dai equation="v_dot = (-5190.0*v + 6228.0)*(-stim_local + v/2 + 0.13)"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="t&lt;10"/>
+      <invariant equation="stim_local&lt;0.410"/>
+    </mode>
+    <mode id="22" initial="False" name="Off_B">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = 0"/>
+      <dai equation="v_dot = (-stim_local + 0.4)*(2295.0*stim_local - 918.0) + (-5190.0*v + 6228.0)*(-stim_local + v/2 + 0.13)"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="t&lt;10"/>
+      <invariant equation="stim_local&gt;=0.4050"/>
+      <invariant equation="stim_local&lt;v-0.47 "/>
+    </mode>
+    <mode id="23" initial="False" name="Off_C">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = 0"/>
+      <dai equation="v_dot = (-1000000*stim_local + 730000.0)*(-0.002595*stim_local + 0.00189435)"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="t&lt;10"/>
+      <invariant equation="stim_local&gt;v-0.47"/>
+      <invariant equation="stim_local&lt;0.410"/>
+    </mode>
+    <mode id="24" initial="False" name="Off_D">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = 0"/>
+      <dai equation="v_dot = (-1000000*stim_local + 730000.0)*(-0.002595*stim_local + 0.00189435) - (stim_local - 0.4)*(2295.0*stim_local - 918.0)"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="t&lt;10"/>
+      <invariant equation="stim_local&gt;v-0.47"/>
+      <invariant equation="stim_local&gt;0.4"/>
+      <invariant equation="stim_local&lt;v+0.4"/>
+      <invariant equation="stim_local&lt;0.73"/>
+    </mode>
+    <mode id="25" initial="False" name="Off_E">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = 0"/>
+      <dai equation="v_dot = -4590.0*v*(stim_local - v/2 - 0.4) + (-1000000*stim_local + 730000.0)*(-0.002595*stim_local + 0.00189435)"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="t&lt;10"/>
+      <invariant equation="stim_local&gt;v+0.4"/>
+      <invariant equation="stim_local&lt;0.73"/>
+    </mode>
+    <mode id="26" initial="False" name="Off_F">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = 0"/>
+      <dai equation="v_dot = (-2295.0*stim_local + 918.0)*(stim_local - 0.4)"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="t&lt;10"/>
+      <invariant equation="stim_local&gt;0.73"/>
+      <invariant equation="stim_local&lt;v+0.4"/>
+    </mode>
+    <mode id="27" initial="False" name="Off_G">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = 0"/>
+      <dai equation="v_dot = -4590.0*v*(stim_local - v/2 - 0.4)"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="t&lt;10"/>
+      <invariant equation="stim_local&gt;0.73"/>
+    </mode>
+    <transition destination="7" id="0" source="0">
+      <guard equation="stim_local&gt;=1.2"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 1.2"/>
+    </transition>
+    <transition destination="8" id="1" source="1">
+      <guard equation="stim_local&gt;=1.2"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 1.2"/>
+    </transition>
+    <transition destination="9" id="2" source="2">
+      <guard equation="stim_local&gt;=1.2"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 1.2"/>
+    </transition>
+    <transition destination="10" id="3" source="3">
+      <guard equation="stim_local&gt;=1.2"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 1.2"/>
+    </transition>
+    <transition destination="11" id="4" source="4">
+      <guard equation="stim_local&gt;=1.2"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 1.2"/>
+    </transition>
+    <transition destination="12" id="5" source="5">
+      <guard equation="stim_local&gt;=1.2"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 1.2"/>
+    </transition>
+    <transition destination="13" id="6" source="6">
+      <guard equation="stim_local&gt;=1.2"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 1.2"/>
+    </transition>
+    <transition destination="14" id="7" source="7">
+      <guard equation="t&gt;=2"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 1.2"/>
+    </transition>
+    <transition destination="15" id="8" source="8">
+      <guard equation="t&gt;=2"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 1.2"/>
+    </transition>
+    <transition destination="16" id="9" source="9">
+      <guard equation="t&gt;=2"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 1.2"/>
+    </transition>
+    <transition destination="17" id="10" source="10">
+      <guard equation="t&gt;=2"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 1.2"/>
+    </transition>
+    <transition destination="18" id="11" source="11">
+      <guard equation="t&gt;=2"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 1.2"/>
+    </transition>
+    <transition destination="19" id="12" source="12">
+      <guard equation="t&gt;=2"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 1.2"/>
+    </transition>
+    <transition destination="20" id="13" source="13">
+      <guard equation="t&gt;=2"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 1.2"/>
+    </transition>
+    <transition destination="21" id="14" source="14">
+      <guard equation="stim_local&lt;=0"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 0"/>
+    </transition>
+    <transition destination="22" id="15" source="15">
+      <guard equation="stim_local&lt;=0"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 0"/>
+    </transition>
+    <transition destination="23" id="16" source="16">
+      <guard equation="stim_local&lt;=0"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 0"/>
+    </transition>
+    <transition destination="24" id="17" source="17">
+      <guard equation="stim_local&lt;=0"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 0"/>
+    </transition>
+    <transition destination="25" id="18" source="18">
+      <guard equation="stim_local&lt;=0"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 0"/>
+    </transition>
+    <transition destination="26" id="19" source="19">
+      <guard equation="stim_local&lt;=0"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 0"/>
+    </transition>
+    <transition destination="27" id="20" source="20">
+      <guard equation="stim_local&lt;=0"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 0"/>
+    </transition>
+    <transition destination="0" id="21" source="21">
+      <guard equation="t&gt;=10"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 0"/>
+    </transition>
+    <transition destination="1" id="22" source="22">
+      <guard equation="t&gt;=10"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 0"/>
+    </transition>
+    <transition destination="2" id="23" source="23">
+      <guard equation="t&gt;=10"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 0"/>
+    </transition>
+    <transition destination="3" id="24" source="24">
+      <guard equation="t&gt;=10"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 0"/>
+    </transition>
+    <transition destination="4" id="25" source="25">
+      <guard equation="t&gt;=10"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 0"/>
+    </transition>
+    <transition destination="5" id="26" source="26">
+      <guard equation="t&gt;=10"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 0"/>
+    </transition>
+    <transition destination="6" id="27" source="27">
+      <guard equation="t&gt;=10"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 0"/>
+    </transition>
+    <transition destination="1" id="28" source="0">
+      <guard equation="stim_local&gt;=0.405"/>
+    </transition>
+    <transition destination="8" id="29" source="7">
+      <guard equation="stim_local&gt;=0.405"/>
+    </transition>
+    <transition destination="15" id="30" source="14">
+      <guard equation="stim_local&gt;=0.405"/>
+    </transition>
+    <transition destination="22" id="31" source="21">
+      <guard equation="stim_local&gt;=0.405"/>
+    </transition>
+    <transition destination="0" id="32" source="1">
+      <guard equation="stim_local&lt;=0.395"/>
+    </transition>
+    <transition destination="7" id="33" source="8">
+      <guard equation="stim_local&lt;=0.395"/>
+    </transition>
+    <transition destination="14" id="34" source="15">
+      <guard equation="stim_local&lt;=0.4"/>
+    </transition>
+    <transition destination="21" id="35" source="22">
+      <guard equation="stim_local&lt;=0.395"/>
+    </transition>
+    <transition destination="3" id="36" source="1">
+      <guard equation="stim_local&gt;=v-0.47"/>
+    </transition>
+    <transition destination="10" id="37" source="8">
+      <guard equation="stim_local&gt;=v-0.47"/>
+    </transition>
+    <transition destination="17" id="38" source="15">
+      <guard equation="stim_local&gt;=v-0.465"/>
+    </transition>
+    <transition destination="24" id="39" source="22">
+      <guard equation="stim_local&gt;=v-0.47"/>
+    </transition>
+    <transition destination="0" id="40" source="2">
+      <guard equation="stim_local&lt;=v-0.47"/>
+    </transition>
+    <transition destination="7" id="41" source="9">
+      <guard equation="stim_local&lt;=v-0.47"/>
+    </transition>
+    <transition destination="14" id="42" source="16">
+      <guard equation="stim_local&lt;=v-0.47"/>
+    </transition>
+    <transition destination="21" id="43" source="23">
+      <guard equation="stim_local&lt;=v-0.47"/>
+    </transition>
+    <transition destination="3" id="44" source="2">
+      <guard equation="stim_local&gt;=0.405 "/>
+    </transition>
+    <transition destination="10" id="45" source="9">
+      <guard equation="stim_local&gt;=0.405 "/>
+    </transition>
+    <transition destination="17" id="46" source="16">
+      <guard equation="stim_local&gt;=0.405 "/>
+    </transition>
+    <transition destination="24" id="47" source="23">
+      <guard equation="stim_local&gt;=0.405 "/>
+    </transition>
+    <transition destination="1" id="48" source="3">
+      <guard equation="stim_local&lt;=v-0.47"/>
+    </transition>
+    <transition destination="8" id="49" source="10">
+      <guard equation="stim_local&lt;=v-0.47"/>
+    </transition>
+    <transition destination="15" id="50" source="17">
+      <guard equation="stim_local&lt;=v-0.47"/>
+    </transition>
+    <transition destination="22" id="51" source="24">
+      <guard equation="stim_local&lt;=v-0.47"/>
+    </transition>
+    <transition destination="2" id="52" source="3">
+      <guard equation="stim_local&lt;=0.395"/>
+    </transition>
+    <transition destination="9" id="53" source="10">
+      <guard equation="stim_local&lt;=0.395"/>
+    </transition>
+    <transition destination="16" id="54" source="17">
+      <guard equation="stim_local&lt;=0.395"/>
+    </transition>
+    <transition destination="23" id="55" source="24">
+      <guard equation="stim_local&lt;=0.395"/>
+    </transition>
+    <transition destination="4" id="56" source="3">
+      <guard equation="stim_local&gt;=v+0.4"/>
+    </transition>
+    <transition destination="11" id="57" source="10">
+      <guard equation="stim_local&gt;=v+0.4"/>
+    </transition>
+    <transition destination="18" id="58" source="17">
+      <guard equation="stim_local&gt;=v+0.405"/>
+    </transition>
+    <transition destination="25" id="59" source="24">
+      <guard equation="stim_local&gt;=v+0.4"/>
+    </transition>
+    <transition destination="5" id="60" source="3">
+      <guard equation="stim_local&gt;=0.73"/>
+    </transition>
+    <transition destination="12" id="61" source="10">
+      <guard equation="stim_local&gt;=0.73"/>
+    </transition>
+    <transition destination="19" id="62" source="17">
+      <guard equation="stim_local&gt;=0.73"/>
+    </transition>
+    <transition destination="26" id="63" source="24">
+      <guard equation="stim_local&gt;=0.73"/>
+    </transition>
+    <transition destination="3" id="64" source="4">
+      <guard equation="stim_local&lt;=v+0.3"/>
+    </transition>
+    <transition destination="10" id="65" source="11">
+      <guard equation="stim_local&lt;=v+0.395"/>
+    </transition>
+    <transition destination="17" id="66" source="18">
+      <guard equation="stim_local&lt;=v+0.4"/>
+    </transition>
+    <transition destination="24" id="67" source="25">
+      <guard equation="stim_local&lt;=v+0.395"/>
+    </transition>
+    <transition destination="6" id="68" source="4">
+      <guard equation="stim_local&gt;=0.73"/>
+    </transition>
+    <transition destination="13" id="69" source="11">
+      <guard equation="stim_local&gt;=0.73"/>
+    </transition>
+    <transition destination="20" id="70" source="18">
+      <guard equation="stim_local&gt;=0.735"/>
+    </transition>
+    <transition destination="27" id="71" source="25">
+      <guard equation="stim_local&gt;=0.73"/>
+    </transition>
+    <transition destination="3" id="72" source="5">
+      <guard equation="stim_local&lt;=0.73"/>
+    </transition>
+    <transition destination="10" id="73" source="12">
+      <guard equation="stim_local&lt;=0.73"/>
+    </transition>
+    <transition destination="17" id="74" source="19">
+      <guard equation="stim_local&lt;=0.73"/>
+    </transition>
+    <transition destination="24" id="75" source="26">
+      <guard equation="stim_local&lt;=0.73"/>
+    </transition>
+    <transition destination="6" id="76" source="5">
+      <guard equation="stim_local&gt;=v+0.4"/>
+    </transition>
+    <transition destination="13" id="77" source="12">
+      <guard equation="stim_local&gt;=v+0.4"/>
+    </transition>
+    <transition destination="20" id="78" source="19">
+      <guard equation="stim_local&gt;=v+0.4"/>
+    </transition>
+    <transition destination="27" id="79" source="26">
+      <guard equation="stim_local&gt;=v+0.4"/>
+    </transition>
+    <transition destination="4" id="80" source="6">
+      <guard equation="stim_local&lt;=0.73"/>
+    </transition>
+    <transition destination="11" id="81" source="13">
+      <guard equation="stim_local&lt;=0.73"/>
+    </transition>
+    <transition destination="18" id="82" source="20">
+      <guard equation="stim_local&lt;=0.73"/>
+    </transition>
+    <transition destination="25" id="83" source="27">
+      <guard equation="stim_local&lt;=0.73"/>
+    </transition>
+  </automaton>
+  <composition automata="default_automaton"/>
+  <property initialSet="Rampup_A:stim_local==0.0&amp;&amp;v&gt;=1.19&amp;&amp;v&lt;=1.21&amp;&amp;t==0" name="p1" type="0" unsafeSet="v &gt; 1.32">
+    <parameters kvalue="2000.0" timestep="0.00005" timehorizon="6.4"/>
+  </property>
+</hyxml>

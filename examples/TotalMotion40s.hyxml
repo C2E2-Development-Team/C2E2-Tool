@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hyxml>
+<hyxml type="Model">
+  <automaton name="default_automaton">
+    <variable name="sx" scope="LOCAL_DATA" type="Real"/>
+    <variable name="vx" scope="LOCAL_DATA" type="Real"/>
+    <variable name="ax" scope="LOCAL_DATA" type="Real"/>
+    <variable name="vy" scope="LOCAL_DATA" type="Real"/>
+    <variable name="omega" scope="LOCAL_DATA" type="Real"/>
+    <variable name="sy" scope="LOCAL_DATA" type="Real"/>
+    <mode id="0" initial="True" name="SlowDown">
+      <dai equation="vx_dot = 0.1*ax"/>
+      <dai equation="sx_dot = vx-2.5"/>
+      <dai equation="ax_dot = -0.01*sx -0.01*10.3 + 0.3*2.8 - 0.3*vx - 0.5*ax"/>
+      <dai equation="omega_dot = -2*omega"/>
+      <dai equation="vy_dot = -2*vy"/>
+      <dai equation="sy_dot = 0.1*vy"/>
+      <dai equation="vx_out = vx"/>
+      <dai equation="sx_out = sx"/>
+      <dai equation="ax_out = ax"/>
+      <dai equation="omega_out = omega"/>
+      <dai equation="vy_out = vy"/>
+      <dai equation="sy_out = sy"/>
+      <invariant equation="sx+10&lt;0"/>ss
+    </mode>
+    <mode id="1" initial="False" name="StartTurn1">
+      <dai equation="vx_dot = 0.1*ax"/>
+      <dai equation="sx_dot = vx-2.5"/>
+      <dai equation="ax_dot = -0.5*vx+1.4-0.5*ax"/>
+      <dai equation="omega_dot = 3 - 3*0.05*omega + 0.2-0.01*sy"/>
+      <dai equation="vy_dot = 2.5*3 - 0.15*3*omega + 0.5 - 0.025*sy - 0.05*vy"/>
+      <dai equation="sy_dot = 0.1*vy"/>
+      <dai equation="vx_out = vx"/>
+      <dai equation="sx_out = sx"/>
+      <dai equation="ax_out = ax"/>
+      <dai equation="omega_out = omega"/>
+      <dai equation="vy_out = vy"/>
+      <dai equation="sy_out = sy"/>
+      <invariant equation="sy&lt;12"/>
+    </mode>
+    <mode id="2" initial="False" name="EndTurn1">
+      <dai equation="vx_dot = 0.1*ax"/>
+      <dai equation="sx_dot = vx-2.5"/>
+      <dai equation="ax_dot = -0.5*vx+1.4-0.5*ax"/>
+      <dai equation="omega_dot = -0.1*omega + 0.2 - 0.01*sy"/>
+      <dai equation="vy_dot = -0.1*2.5*omega + 0.5 - 0.025*sy - 0.05*vy"/>
+      <dai equation="sy_dot = 0.1*vy"/>
+      <dai equation="vx_out = vx"/>
+      <dai equation="sx_out = sx"/>
+      <dai equation="ax_out = ax"/>
+      <dai equation="omega_out = omega"/>
+      <dai equation="vy_out = vy"/>
+      <dai equation="sy_out = sy"/>
+      <invariant equation="vy&gt;0.05"/>
+    
+    </mode>
+    <mode id="3" initial="False" name="EndTurn2">
+      <dai equation="vx_dot = 0.1*ax"/>
+      <dai equation="sx_dot = vx-2.5"/>
+      <dai equation="ax_dot = -0.5*vx+1.4-0.5*ax"/>
+      <dai equation="omega_dot = -0.1*omega + 0.2 - 0.01*sy"/>
+      <dai equation="vy_dot = -0.1*2.5*omega + 0.5 - 0.025*sy - 0.05*vy"/>
+      <dai equation="sy_dot = 0.1*vy"/>
+      <dai equation="vx_out = vx"/>
+      <dai equation="sx_out = sx"/>
+      <dai equation="ax_out = ax"/>
+      <dai equation="omega_out = omega"/>
+      <dai equation="vy_out = vy"/>
+      <dai equation="sy_out = sy"/>
+      <invariant equation="vy+0.05&lt;0"/>
+     
+    </mode>
+    <mode id="4" initial="False" name="StartTurn2">
+      <dai equation="vx_dot = 0.1*ax"/>
+      <dai equation="sx_dot = vx-2.5"/>
+      <dai equation="ax_dot = -0.5*vx+1.4-0.5*ax"/>
+      <dai equation="omega_dot = -3 - 3*0.05*omega + 0.2-0.01*sy"/>
+      <dai equation="vy_dot = -2.5*3 - 0.15*3*omega + 0.5 - 0.025*sy - 0.05*vy"/>
+      <dai equation="sy_dot = 0.1*vy"/>
+      <dai equation="vx_out = vx"/>
+      <dai equation="sx_out = sx"/>
+      <dai equation="ax_out = ax"/>
+      <dai equation="omega_out = omega"/>
+      <dai equation="vy_out = vy"/>
+      <dai equation="sy_out = sy"/>
+      <invariant equation="sy&gt;3.5"/>
+      <annotation mode="StartTurn2">
+        <K value="1.55"/>
+        <gamma value="0.0066"/>
+        <type string="exponential" value="1"/>
+      </annotation>
+    </mode>
+    <mode id="5" initial="False" name="SpeedUp">
+      <dai equation="vx_dot = 0.1*ax"/>
+      <dai equation="sx_dot = vx-2.5"/>
+      <dai equation="ax_dot = -0.01*sx + 0.01*10.3 + 0.3*2.8 - 0.3*vx - 0.5*ax"/>
+      <dai equation="omega_dot = -2*omega"/>
+      <dai equation="vy_dot = -2*vy"/>
+      <dai equation="sy_dot = 0.1*vy"/>
+      <dai equation="vx_out = vx"/>
+      <dai equation="sx_out = sx"/>
+      <dai equation="ax_out = ax"/>
+      <dai equation="omega_out = omega"/>
+      <dai equation="vy_out = vy"/>
+      <dai equation="sy_out = sy"/>
+      <invariant equation="sx&lt;10"/>
+
+    </mode>
+    <mode id="6" initial="False" name="Continue">
+      <dai equation="vx_dot = 0.1*ax"/>
+      <dai equation="sx_dot = vx-2.5"/>
+      <dai equation="ax_dot = -0.5*vx+1.4-0.5*ax"/>
+      <dai equation="omega_dot = -2*omega"/>
+      <dai equation="vy_dot = -2*vy"/>
+      <dai equation="sy_dot = 0.1*vy"/>
+      <dai equation="vx_out = vx"/>
+      <dai equation="sx_out = sx"/>
+      <dai equation="ax_out = ax"/>
+      <dai equation="omega_out = omega"/>
+      <dai equation="vy_out = vy"/>
+      <dai equation="sy_out = sy"/>
+     
+    </mode>
+    <transition destination="1" id="1" source="0">
+      <guard equation="sx + 10 &gt;=0"/>
+    </transition>
+    <transition destination="2" id="2" source="1">
+      <guard equation="sy&gt;=12"/>
+    </transition>
+    <transition destination="3" id="3" source="4">
+      <guard equation="sy&lt;=3.5"/>
+    </transition>
+    <transition destination="4" id="4" source="5">
+      <guard equation="sx&gt;=10"/>
+    </transition>
+    <transition destination="5" id="5" source="2">
+      <guard equation="vy&lt;=0.05"/>
+    </transition>
+    <transition destination="6" id="6" source="3">
+      <guard equation="vy+0.05&gt;=0"/>
+    </transition>
+  </automaton>
+  <composition automata="default_automaton"/>
+  <property initialSet="SlowDown: sx&gt;=-15.0&amp;&amp;sx&lt;=-14.95&amp;&amp;vx&gt;=3.25&amp;&amp;vx&lt;=3.3&amp;&amp;ax==0&amp;&amp;vy==0&amp;&amp;omega==0&amp;&amp;sy==0" name="SxUB1" type="0" unsafeSet="sx&gt;=50">
+    <parameters kvalue="2000.0" timehorizon="60.0" timestep="0.1"/>
+  </property>
+  <property initialSet="SlowDown: sx&gt;=-15.0&amp;&amp;sx&lt;=-14.95&amp;&amp;vx&gt;=3.25&amp;&amp;vx&lt;=3.3&amp;&amp;ax==0&amp;&amp;vy==0&amp;&amp;omega==0&amp;&amp;sy==0" name="SxLB1" type="0" unsafeSet="sx&lt;=-16.0">
+    <parameters kvalue="2000.0" timehorizon="60.0" timestep="0.1"/>
+  </property>
+  <property initialSet="SlowDown: sx&gt;=-15.0&amp;&amp;sx&lt;=-14.95&amp;&amp;vx&gt;=3.25&amp;&amp;vx&lt;=3.3&amp;&amp;ax==0&amp;&amp;vy==0&amp;&amp;omega==0&amp;&amp;sy==0" name="VxUB1" type="0" unsafeSet="vx&gt;=3.5">
+    <parameters kvalue="2000.0" timehorizon="60.0" timestep="0.1"/>
+  </property>
+  <property initialSet="SlowDown: sx&gt;=-15.0&amp;&amp;sx&lt;=-14.95&amp;&amp;vx&gt;=3.25&amp;&amp;vx&lt;=3.3&amp;&amp;ax==0&amp;&amp;vy==0&amp;&amp;omega==0&amp;&amp;sy==0" name="VxLB1" type="0" unsafeSet="vx&lt;=2.1">
+    <parameters kvalue="2000.0" timehorizon="60.0" timestep="0.1"/>
+  </property>
+  <property initialSet="SlowDown: sx&gt;=-15.0&amp;&amp;sx&lt;=-14.95&amp;&amp;vx&gt;=3.25&amp;&amp;vx&lt;=3.3&amp;&amp;ax==0&amp;&amp;vy==0&amp;&amp;omega==0&amp;&amp;sy==0" name="AxUB1" type="0" unsafeSet="ax&gt;=1.5">
+    <parameters kvalue="2000.0" timehorizon="60.0" timestep="0.1"/>
+  </property>
+  <property initialSet="SlowDown: sx&gt;=-15.0&amp;&amp;sx&lt;=-14.95&amp;&amp;vx&gt;=3.25&amp;&amp;vx&lt;=3.3&amp;&amp;ax==0&amp;&amp;vy==0&amp;&amp;omega==0&amp;&amp;sy==0" name="AxLB1" type="0" unsafeSet="ax&lt;=-1.5">
+    <parameters kvalue="2000.0" timehorizon="60.0" timestep="0.1"/>
+  </property>
+  <property initialSet="SlowDown: sx&gt;=-15.0&amp;&amp;sx&lt;=-14.95&amp;&amp;vx&gt;=3.25&amp;&amp;vx&lt;=3.3&amp;&amp;ax==0&amp;&amp;vy==0&amp;&amp;omega==0&amp;&amp;sy==0" name="SxSyBack" type="0" unsafeSet="sx&gt;=-4&amp;&amp;sx&lt;=4&amp;&amp;sy&lt;=7">
+    <parameters kvalue="2000.0" timehorizon="60.0" timestep="0.1"/>
+  </property>
+  <property initialSet="SlowDown: sx&gt;=-15.0&amp;&amp;sx&lt;=-14.95&amp;&amp;vx&gt;=3.25&amp;&amp;vx&lt;=3.3&amp;&amp;ax==0&amp;&amp;vy==0&amp;&amp;omega==0&amp;&amp;sy==0" name="SxSyFront" type="0" unsafeSet="sx&gt;=20&amp;&amp;sy&gt;=5">
+    <parameters kvalue="2000.0" timehorizon="60.0" timestep="0.1"/>
+  </property>
+  <property initialSet="SlowDown: sx&gt;=-15.0&amp;&amp;sx&lt;=-14.95&amp;&amp;vx&gt;=3.25&amp;&amp;vx&lt;=3.3&amp;&amp;ax==0&amp;&amp;vy==0&amp;&amp;omega==0&amp;&amp;sy==0" name="VyLB1" type="0" unsafeSet="vy&gt;=25">
+    <parameters kvalue="2000.0" timehorizon="60.0" timestep="0.1"/>
+  </property>
+  <property initialSet="SlowDown: sx&gt;=-15.0&amp;&amp;sx&lt;=-14.95&amp;&amp;vx&gt;=3.25&amp;&amp;vx&lt;=3.3&amp;&amp;ax==0&amp;&amp;vy==0&amp;&amp;omega==0&amp;&amp;sy==0" name="VyUB1" type="0" unsafeSet="vy&lt;=-25">
+    <parameters kvalue="2000.0" timehorizon="60.0" timestep="0.1"/>
+  </property>
+</hyxml>

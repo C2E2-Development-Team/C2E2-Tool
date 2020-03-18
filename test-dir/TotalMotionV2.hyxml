@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hyxml>
+<hyxml type="Model">
+  <automaton name="default_automaton">
+    <variable name="sx" scope="LOCAL_DATA" type="Real"/>
+    <variable name="vx" scope="LOCAL_DATA" type="Real"/>
+    <variable name="ax" scope="LOCAL_DATA" type="Real"/>
+    <variable name="vy" scope="LOCAL_DATA" type="Real"/>
+    <variable name="omega" scope="LOCAL_DATA" type="Real"/>
+    <variable name="sy" scope="LOCAL_DATA" type="Real"/>
+    <mode id="0" initial="True" name="SlowDown">
+      <dai equation="vx_dot = 0.1*ax"/>
+      <dai equation="sx_dot = vx - 2.5"/>
+      <dai equation="ax_dot = -0.5*ax - 0.01*sx - 0.3*vx + 0.737"/>
+      <dai equation="omega_dot = -2*omega"/>
+      <dai equation="vy_dot = -2*vy"/>
+      <dai equation="sy_dot = 0.1*vy"/>
+      <dai equation="vx_out = vx"/>
+      <dai equation="sx_out = sx"/>
+      <dai equation="ax_out = ax"/>
+      <dai equation="omega_out = omega"/>
+      <dai equation="vy_out = vy"/>
+      <dai equation="sy_out = sy"/>
+      <invariant equation="sx+10&lt;0"/>
+    </mode>
+    <mode id="1" initial="False" name="StartTurn1">
+      <dai equation="vx_dot = 0.1*ax"/>
+      <dai equation="sx_dot = vx - 2.5"/>
+      <dai equation="ax_dot = -0.5*ax - 0.5*vx + 1.4"/>
+      <dai equation="omega_dot = -0.15*omega - 0.01*sy + 3.2"/>
+      <dai equation="vy_dot = -0.45*omega - 0.025*sy - 0.05*vy + 8.0"/>
+      <dai equation="sy_dot = 0.1*vy"/>
+      <dai equation="vx_out = vx"/>
+      <dai equation="sx_out = sx"/>
+      <dai equation="ax_out = ax"/>
+      <dai equation="omega_out = omega"/>
+      <dai equation="vy_out = vy"/>
+      <dai equation="sy_out = sy"/>
+      <invariant equation="sy&lt;12"/>
+    </mode>
+    <mode id="2" initial="False" name="EndTurn1">
+      <dai equation="vx_dot = 0.1*ax"/>
+      <dai equation="sx_dot = vx - 2.5"/>
+      <dai equation="ax_dot = -0.5*ax - 0.5*vx + 1.4"/>
+      <dai equation="omega_dot = -0.1*omega - 0.01*sy + 0.2"/>
+      <dai equation="vy_dot = -0.25*omega - 0.025*sy - 0.05*vy + 0.5"/>
+      <dai equation="sy_dot = 0.1*vy"/>
+      <dai equation="vx_out = vx"/>
+      <dai equation="sx_out = sx"/>
+      <dai equation="ax_out = ax"/>
+      <dai equation="omega_out = omega"/>
+      <dai equation="vy_out = vy"/>
+      <dai equation="sy_out = sy"/>
+      <invariant equation="vy&gt;0.05"/>
+    </mode>
+    <mode id="3" initial="False" name="EndTurn2">
+      <dai equation="vx_dot = 0.1*ax"/>
+      <dai equation="sx_dot = vx - 2.5"/>
+      <dai equation="ax_dot = -0.5*ax - 0.5*vx + 1.4"/>
+      <dai equation="omega_dot = -0.1*omega - 0.01*sy + 0.2"/>
+      <dai equation="vy_dot = -0.25*omega - 0.025*sy - 0.05*vy + 0.5"/>
+      <dai equation="sy_dot = 0.1*vy"/>
+      <dai equation="vx_out = vx"/>
+      <dai equation="sx_out = sx"/>
+      <dai equation="ax_out = ax"/>
+      <dai equation="omega_out = omega"/>
+      <dai equation="vy_out = vy"/>
+      <dai equation="sy_out = sy"/>
+      <invariant equation="vy+0.05&lt;0"/>
+    </mode>
+    <mode id="4" initial="False" name="StartTurn2">
+      <dai equation="vx_dot = 0.1*ax"/>
+      <dai equation="sx_dot = vx - 2.5"/>
+      <dai equation="ax_dot = -0.5*ax - 0.5*vx + 1.4"/>
+      <dai equation="omega_dot = -0.15*omega - 0.01*sy - 2.8"/>
+      <dai equation="vy_dot = -0.45*omega - 0.025*sy - 0.05*vy - 7.0"/>
+      <dai equation="sy_dot = 0.1*vy"/>
+      <dai equation="vx_out = vx"/>
+      <dai equation="sx_out = sx"/>
+      <dai equation="ax_out = ax"/>
+      <dai equation="omega_out = omega"/>
+      <dai equation="vy_out = vy"/>
+      <dai equation="sy_out = sy"/>
+      <invariant equation="sy&gt;3.5"/>
+    </mode>
+    <mode id="5" initial="False" name="SpeedUp">
+      <dai equation="vx_dot = 0.1*ax"/>
+      <dai equation="sx_dot = vx - 2.5"/>
+      <dai equation="ax_dot = -0.001*ax - 0.0001*sx - 0.01*vx"/>
+      <dai equation="omega_dot = -2*omega"/>
+      <dai equation="vy_dot = -2*vy"/>
+      <dai equation="sy_dot = 0.1*vy"/>
+      <dai equation="vx_out = vx"/>
+      <dai equation="sx_out = sx"/>
+      <dai equation="ax_out = ax"/>
+      <dai equation="omega_out = omega"/>
+      <dai equation="vy_out = vy"/>
+      <dai equation="sy_out = sy"/>
+      <invariant equation="sx&gt;-10"/>
+    </mode>
+    <mode id="6" initial="False" name="Continue">
+      <dai equation="vx_dot = 0.1*ax"/>
+      <dai equation="sx_dot = vx - 2.5"/>
+      <dai equation="ax_dot = -0.5*ax - 0.5*vx + 1.4"/>
+      <dai equation="omega_dot = -2*omega"/>
+      <dai equation="vy_dot = -2*vy"/>
+      <dai equation="sy_dot = 0.1*vy"/>
+      <dai equation="vx_out = vx"/>
+      <dai equation="sx_out = sx"/>
+      <dai equation="ax_out = ax"/>
+      <dai equation="omega_out = omega"/>
+      <dai equation="vy_out = vy"/>
+      <dai equation="sy_out = sy"/>
+    </mode>
+    <transition destination="1" id="1" source="0">
+      <guard equation="sx + 10 &gt;=0"/>
+    </transition>
+    <transition destination="2" id="2" source="1">
+      <guard equation="sy&gt;=12"/>
+    </transition>
+    <transition destination="3" id="3" source="4">
+      <guard equation="sy&lt;=3.5"/>
+    </transition>
+    <transition destination="4" id="4" source="5">
+      <guard equation="sx&lt;=-10"/>
+    </transition>
+    <transition destination="5" id="5" source="2">
+      <guard equation="vy&lt;=0.05"/>
+    </transition>
+    <transition destination="6" id="6" source="3">
+      <guard equation="vy+0.05&gt;=0"/>
+    </transition>
+  </automaton>
+  <composition automata="default_automaton"/>
+  <property initialSet="SlowDown: sx&gt;=-15.0&amp;&amp;sx&lt;=-14.95&amp;&amp;vx&gt;=3.25&amp;&amp;vx&lt;=3.3&amp;&amp;ax==0&amp;&amp;vy==0&amp;&amp;omega==0&amp;&amp;sy==0" name="TotalMotionV2_test" type="0" unsafeSet="sx&gt;=-2&amp;&amp;sx&lt;=2&amp;&amp;sy&lt;=7">
+    <parameters kvalue="2000.0" timehorizon="100.0" timestep="0.01"/>
+  </property>
+</hyxml>

@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hyxml>
+<hyxml type="Model">
+  <automaton name="default_automaton">
+    <variable name="u" scope="LOCAL_DATA" type="Real"/>
+    <variable name="v" scope="LOCAL_DATA" type="Real"/>
+    <mode id="0" initial="True" name="stimOn">
+      <dai equation="u_dot = -0.9*u*u-u*u*u-0.9*u-v+1"/>
+      <dai equation="v_dot = u-2*v"/>
+      <dai equation="u_out = u"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="u&lt;0.5"/>
+    </mode>
+    <mode id="1" initial="False" name="stimOff">
+      <dai equation="u_dot = -0.9*u*u-u*u*u-0.9*u-v"/>
+      <dai equation="v_dot = u-2*v"/>
+      <dai equation="u_out = u"/>
+      <dai equation="v_out = v"/>
+      <invariant equation="u&gt;0"/>
+    </mode>
+    <transition destination="1" id="1" source="0">
+      <guard equation="u&gt;=0.5"/>
+    </transition>
+    <transition destination="0" id="2" source="1">
+      <guard equation="u&lt;=0"/>
+    </transition>
+  </automaton>
+  <composition automata="default_automaton"/>
+  <property initialSet="stimOn:u&gt;=0&amp;&amp;u&lt;=0&amp;&amp;v&gt;=0&amp;&amp;v&lt;=0" name="P1" type="0" unsafeSet="u&gt;=2.5">
+    <parameters kvalue="2000.0" timehorizon="4.0" timestep="0.01"/>
+  </property>
+</hyxml>

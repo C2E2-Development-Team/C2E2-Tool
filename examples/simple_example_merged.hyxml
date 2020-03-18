@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hyxml>
+<hyxml type="Model">
+  <automaton name="default_automaton">
+    <variable name="u" scope="LOCAL_DATA" type="Real"/>
+    <variable name="v" scope="LOCAL_DATA" type="Real"/>
+    <variable name="t" scope="LOCAL_DATA" type="Real"/>
+    <variable name="stim_local" scope="LOCAL_DATA" type="Real"/>
+    <variable name="stim" scope="OUTPUT_DATA" type="Real"/>
+    <thin_variable name="stim_local" scope="LOCAL_DATA" type="Real"/>
+    <mode id="0" initial="True" name="cardiac_stimOn">
+      <dai equation="u_dot = 1 + 2*stim_local*v - 0.9*u - v - 0.9*pow(u, 2) - pow(u, 3)"/>
+      <dai equation="v_dot = u - 2*v"/>
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = stim_local*(-1.5*stim_local + 1.8) + 0.0015"/>
+      <dai equation="stim = stim_local"/>
+      <invariant equation="t&lt;8"/>
+    </mode>
+    <mode id="1" initial="False" name="cardiac_stimOff">
+      <dai equation="u_dot = 1 + 2*stim_local*v - 0.9*u - v - 0.9*pow(u, 2) - pow(u, 3)"/>
+      <dai equation="v_dot = u - 2*v"/>
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = -stim_local*(-1.5*stim_local + 1.8) - 0.0015"/>
+      <dai equation="stim = stim_local"/>
+      <invariant equation="t&lt;8"/>
+    </mode>
+    <transition destination="1" id="0" source="0">
+      <guard equation="t&gt;=8"/>
+      <action equation="t = 0"/>
+    </transition>
+    <transition destination="0" id="1" source="1">
+      <guard equation="t&gt;=8"/>
+      <action equation="t = 0"/>
+    </transition>
+  </automaton>
+  <composition automata="default_automaton"/>
+  <property initialSet="cardiac_stimOn:u&gt;=0.4&amp;&amp;u&lt;=0.6&amp;&amp;v&gt;=0.24&amp;&amp;v&lt;=0.24&amp;&amp;stim_local&gt;=0&amp;&amp;stim_local&lt;=0&amp;&amp;t==0" name="P1" type="0" unsafeSet="u&gt;=2500">
+    <parameters kvalue="2000.0" timehorizon="20.0" timestep="0.01"/>
+  </property>
+</hyxml>

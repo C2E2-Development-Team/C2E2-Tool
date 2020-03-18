@@ -1,0 +1,1027 @@
+Created by PLY version 3.9 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> Action
+Rule 1     Action -> IDENTIFIER entry during exit bind
+Rule 2     empty -> <empty>
+Rule 3     entry -> ENTRY COLON Exprs
+Rule 4     entry -> ENTRY COLON
+Rule 5     entry -> empty
+Rule 6     during -> DURING COLON Exprs
+Rule 7     during -> DURING COLON
+Rule 8     during -> empty
+Rule 9     exit -> EXIT COLON Exprs
+Rule 10    exit -> EXIT COLON
+Rule 11    exit -> empty
+Rule 12    bind -> BIND COLON binds
+Rule 13    bind -> BIND COLON
+Rule 14    bind -> empty
+Rule 15    binds -> IDENTIFIER COMMA IDENTIFIER SEMICOLON binds
+Rule 16    binds -> IDENTIFIER COMMA IDENTIFIER COMMA binds
+Rule 17    binds -> IDENTIFIER COMMA IDENTIFIER binds
+Rule 18    binds -> IDENTIFIER COMMA IDENTIFIER
+Rule 19    Exprs -> Assgn Exprs
+Rule 20    Exprs -> Assgn
+Rule 21    Exprs -> BCast Exprs
+Rule 22    Exprs -> BCast
+Rule 23    Assgn -> IDENTIFIER EQUALS expr SEMICOLON
+Rule 24    Assgn -> IDENTIFIER EQUALS expr COMMA
+Rule 25    Assgn -> IDENTIFIER EQUALS expr
+Rule 26    BCast -> IDENTIFIER SEMICOLON
+Rule 27    BCast -> IDENTIFIER COMMA
+Rule 28    BCast -> IDENTIFIER
+Rule 29    expr -> expr PLUS term
+Rule 30    expr -> expr MINUS term
+Rule 31    expr -> term
+Rule 32    term -> term TIMES factor
+Rule 33    term -> term DIVIDE factor
+Rule 34    term -> factor
+Rule 35    factor -> IDENTIFIER
+Rule 36    factor -> MINUS factor
+Rule 37    factor -> FLOAT
+Rule 38    factor -> INTEGER
+Rule 39    factor -> LPAREN expr RPAREN
+Rule 40    factor -> FUNC LPAREN expr RPAREN
+
+Terminals, with rules where they appear
+
+BIND                 : 12 13
+COLON                : 3 4 6 7 9 10 12 13
+COMMA                : 15 16 16 17 18 24 27
+DIVIDE               : 33
+DURING               : 6 7
+ENTRY                : 3 4
+EQUALS               : 23 24 25
+EXIT                 : 9 10
+FLOAT                : 37
+FUNC                 : 40
+IDENTIFIER           : 1 15 15 16 16 17 17 18 18 23 24 25 26 27 28 35
+INTEGER              : 38
+LPAREN               : 39 40
+MINUS                : 30 36
+PLUS                 : 29
+RPAREN               : 39 40
+SEMICOLON            : 15 23 26
+TIMES                : 32
+error                : 
+
+Nonterminals, with rules where they appear
+
+Action               : 0
+Assgn                : 19 20
+BCast                : 21 22
+Exprs                : 3 6 9 19 21
+bind                 : 1
+binds                : 12 15 16 17
+during               : 1
+empty                : 5 8 11 14
+entry                : 1
+exit                 : 1
+expr                 : 23 24 25 29 30 39 40
+factor               : 32 33 34 36
+term                 : 29 30 31 32 33
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . Action
+    (1) Action -> . IDENTIFIER entry during exit bind
+
+    IDENTIFIER      shift and go to state 1
+
+    Action                         shift and go to state 2
+
+state 1
+
+    (1) Action -> IDENTIFIER . entry during exit bind
+    (3) entry -> . ENTRY COLON Exprs
+    (4) entry -> . ENTRY COLON
+    (5) entry -> . empty
+    (2) empty -> .
+
+    ENTRY           shift and go to state 5
+    DURING          reduce using rule 2 (empty -> .)
+    EXIT            reduce using rule 2 (empty -> .)
+    BIND            reduce using rule 2 (empty -> .)
+    $end            reduce using rule 2 (empty -> .)
+
+    entry                          shift and go to state 3
+    empty                          shift and go to state 4
+
+state 2
+
+    (0) S' -> Action .
+
+
+
+state 3
+
+    (1) Action -> IDENTIFIER entry . during exit bind
+    (6) during -> . DURING COLON Exprs
+    (7) during -> . DURING COLON
+    (8) during -> . empty
+    (2) empty -> .
+
+    DURING          shift and go to state 8
+    EXIT            reduce using rule 2 (empty -> .)
+    BIND            reduce using rule 2 (empty -> .)
+    $end            reduce using rule 2 (empty -> .)
+
+    empty                          shift and go to state 7
+    during                         shift and go to state 6
+
+state 4
+
+    (5) entry -> empty .
+
+    DURING          reduce using rule 5 (entry -> empty .)
+    EXIT            reduce using rule 5 (entry -> empty .)
+    BIND            reduce using rule 5 (entry -> empty .)
+    $end            reduce using rule 5 (entry -> empty .)
+
+
+state 5
+
+    (3) entry -> ENTRY . COLON Exprs
+    (4) entry -> ENTRY . COLON
+
+    COLON           shift and go to state 9
+
+
+state 6
+
+    (1) Action -> IDENTIFIER entry during . exit bind
+    (9) exit -> . EXIT COLON Exprs
+    (10) exit -> . EXIT COLON
+    (11) exit -> . empty
+    (2) empty -> .
+
+    EXIT            shift and go to state 11
+    BIND            reduce using rule 2 (empty -> .)
+    $end            reduce using rule 2 (empty -> .)
+
+    empty                          shift and go to state 10
+    exit                           shift and go to state 12
+
+state 7
+
+    (8) during -> empty .
+
+    EXIT            reduce using rule 8 (during -> empty .)
+    BIND            reduce using rule 8 (during -> empty .)
+    $end            reduce using rule 8 (during -> empty .)
+
+
+state 8
+
+    (6) during -> DURING . COLON Exprs
+    (7) during -> DURING . COLON
+
+    COLON           shift and go to state 13
+
+
+state 9
+
+    (3) entry -> ENTRY COLON . Exprs
+    (4) entry -> ENTRY COLON .
+    (19) Exprs -> . Assgn Exprs
+    (20) Exprs -> . Assgn
+    (21) Exprs -> . BCast Exprs
+    (22) Exprs -> . BCast
+    (23) Assgn -> . IDENTIFIER EQUALS expr SEMICOLON
+    (24) Assgn -> . IDENTIFIER EQUALS expr COMMA
+    (25) Assgn -> . IDENTIFIER EQUALS expr
+    (26) BCast -> . IDENTIFIER SEMICOLON
+    (27) BCast -> . IDENTIFIER COMMA
+    (28) BCast -> . IDENTIFIER
+
+    DURING          reduce using rule 4 (entry -> ENTRY COLON .)
+    EXIT            reduce using rule 4 (entry -> ENTRY COLON .)
+    BIND            reduce using rule 4 (entry -> ENTRY COLON .)
+    $end            reduce using rule 4 (entry -> ENTRY COLON .)
+    IDENTIFIER      shift and go to state 14
+
+    BCast                          shift and go to state 16
+    Assgn                          shift and go to state 15
+    Exprs                          shift and go to state 17
+
+state 10
+
+    (11) exit -> empty .
+
+    BIND            reduce using rule 11 (exit -> empty .)
+    $end            reduce using rule 11 (exit -> empty .)
+
+
+state 11
+
+    (9) exit -> EXIT . COLON Exprs
+    (10) exit -> EXIT . COLON
+
+    COLON           shift and go to state 18
+
+
+state 12
+
+    (1) Action -> IDENTIFIER entry during exit . bind
+    (12) bind -> . BIND COLON binds
+    (13) bind -> . BIND COLON
+    (14) bind -> . empty
+    (2) empty -> .
+
+    BIND            shift and go to state 21
+    $end            reduce using rule 2 (empty -> .)
+
+    empty                          shift and go to state 19
+    bind                           shift and go to state 20
+
+state 13
+
+    (6) during -> DURING COLON . Exprs
+    (7) during -> DURING COLON .
+    (19) Exprs -> . Assgn Exprs
+    (20) Exprs -> . Assgn
+    (21) Exprs -> . BCast Exprs
+    (22) Exprs -> . BCast
+    (23) Assgn -> . IDENTIFIER EQUALS expr SEMICOLON
+    (24) Assgn -> . IDENTIFIER EQUALS expr COMMA
+    (25) Assgn -> . IDENTIFIER EQUALS expr
+    (26) BCast -> . IDENTIFIER SEMICOLON
+    (27) BCast -> . IDENTIFIER COMMA
+    (28) BCast -> . IDENTIFIER
+
+    EXIT            reduce using rule 7 (during -> DURING COLON .)
+    BIND            reduce using rule 7 (during -> DURING COLON .)
+    $end            reduce using rule 7 (during -> DURING COLON .)
+    IDENTIFIER      shift and go to state 14
+
+    BCast                          shift and go to state 16
+    Assgn                          shift and go to state 15
+    Exprs                          shift and go to state 22
+
+state 14
+
+    (23) Assgn -> IDENTIFIER . EQUALS expr SEMICOLON
+    (24) Assgn -> IDENTIFIER . EQUALS expr COMMA
+    (25) Assgn -> IDENTIFIER . EQUALS expr
+    (26) BCast -> IDENTIFIER . SEMICOLON
+    (27) BCast -> IDENTIFIER . COMMA
+    (28) BCast -> IDENTIFIER .
+
+    EQUALS          shift and go to state 23
+    SEMICOLON       shift and go to state 25
+    COMMA           shift and go to state 24
+    IDENTIFIER      reduce using rule 28 (BCast -> IDENTIFIER .)
+    EXIT            reduce using rule 28 (BCast -> IDENTIFIER .)
+    BIND            reduce using rule 28 (BCast -> IDENTIFIER .)
+    $end            reduce using rule 28 (BCast -> IDENTIFIER .)
+    DURING          reduce using rule 28 (BCast -> IDENTIFIER .)
+
+
+state 15
+
+    (19) Exprs -> Assgn . Exprs
+    (20) Exprs -> Assgn .
+    (19) Exprs -> . Assgn Exprs
+    (20) Exprs -> . Assgn
+    (21) Exprs -> . BCast Exprs
+    (22) Exprs -> . BCast
+    (23) Assgn -> . IDENTIFIER EQUALS expr SEMICOLON
+    (24) Assgn -> . IDENTIFIER EQUALS expr COMMA
+    (25) Assgn -> . IDENTIFIER EQUALS expr
+    (26) BCast -> . IDENTIFIER SEMICOLON
+    (27) BCast -> . IDENTIFIER COMMA
+    (28) BCast -> . IDENTIFIER
+
+    DURING          reduce using rule 20 (Exprs -> Assgn .)
+    EXIT            reduce using rule 20 (Exprs -> Assgn .)
+    BIND            reduce using rule 20 (Exprs -> Assgn .)
+    $end            reduce using rule 20 (Exprs -> Assgn .)
+    IDENTIFIER      shift and go to state 14
+
+    BCast                          shift and go to state 16
+    Assgn                          shift and go to state 15
+    Exprs                          shift and go to state 26
+
+state 16
+
+    (21) Exprs -> BCast . Exprs
+    (22) Exprs -> BCast .
+    (19) Exprs -> . Assgn Exprs
+    (20) Exprs -> . Assgn
+    (21) Exprs -> . BCast Exprs
+    (22) Exprs -> . BCast
+    (23) Assgn -> . IDENTIFIER EQUALS expr SEMICOLON
+    (24) Assgn -> . IDENTIFIER EQUALS expr COMMA
+    (25) Assgn -> . IDENTIFIER EQUALS expr
+    (26) BCast -> . IDENTIFIER SEMICOLON
+    (27) BCast -> . IDENTIFIER COMMA
+    (28) BCast -> . IDENTIFIER
+
+    DURING          reduce using rule 22 (Exprs -> BCast .)
+    EXIT            reduce using rule 22 (Exprs -> BCast .)
+    BIND            reduce using rule 22 (Exprs -> BCast .)
+    $end            reduce using rule 22 (Exprs -> BCast .)
+    IDENTIFIER      shift and go to state 14
+
+    Exprs                          shift and go to state 27
+    BCast                          shift and go to state 16
+    Assgn                          shift and go to state 15
+
+state 17
+
+    (3) entry -> ENTRY COLON Exprs .
+
+    DURING          reduce using rule 3 (entry -> ENTRY COLON Exprs .)
+    EXIT            reduce using rule 3 (entry -> ENTRY COLON Exprs .)
+    BIND            reduce using rule 3 (entry -> ENTRY COLON Exprs .)
+    $end            reduce using rule 3 (entry -> ENTRY COLON Exprs .)
+
+
+state 18
+
+    (9) exit -> EXIT COLON . Exprs
+    (10) exit -> EXIT COLON .
+    (19) Exprs -> . Assgn Exprs
+    (20) Exprs -> . Assgn
+    (21) Exprs -> . BCast Exprs
+    (22) Exprs -> . BCast
+    (23) Assgn -> . IDENTIFIER EQUALS expr SEMICOLON
+    (24) Assgn -> . IDENTIFIER EQUALS expr COMMA
+    (25) Assgn -> . IDENTIFIER EQUALS expr
+    (26) BCast -> . IDENTIFIER SEMICOLON
+    (27) BCast -> . IDENTIFIER COMMA
+    (28) BCast -> . IDENTIFIER
+
+    BIND            reduce using rule 10 (exit -> EXIT COLON .)
+    $end            reduce using rule 10 (exit -> EXIT COLON .)
+    IDENTIFIER      shift and go to state 14
+
+    BCast                          shift and go to state 16
+    Assgn                          shift and go to state 15
+    Exprs                          shift and go to state 28
+
+state 19
+
+    (14) bind -> empty .
+
+    $end            reduce using rule 14 (bind -> empty .)
+
+
+state 20
+
+    (1) Action -> IDENTIFIER entry during exit bind .
+
+    $end            reduce using rule 1 (Action -> IDENTIFIER entry during exit bind .)
+
+
+state 21
+
+    (12) bind -> BIND . COLON binds
+    (13) bind -> BIND . COLON
+
+    COLON           shift and go to state 29
+
+
+state 22
+
+    (6) during -> DURING COLON Exprs .
+
+    EXIT            reduce using rule 6 (during -> DURING COLON Exprs .)
+    BIND            reduce using rule 6 (during -> DURING COLON Exprs .)
+    $end            reduce using rule 6 (during -> DURING COLON Exprs .)
+
+
+state 23
+
+    (23) Assgn -> IDENTIFIER EQUALS . expr SEMICOLON
+    (24) Assgn -> IDENTIFIER EQUALS . expr COMMA
+    (25) Assgn -> IDENTIFIER EQUALS . expr
+    (29) expr -> . expr PLUS term
+    (30) expr -> . expr MINUS term
+    (31) expr -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . factor
+    (35) factor -> . IDENTIFIER
+    (36) factor -> . MINUS factor
+    (37) factor -> . FLOAT
+    (38) factor -> . INTEGER
+    (39) factor -> . LPAREN expr RPAREN
+    (40) factor -> . FUNC LPAREN expr RPAREN
+
+    IDENTIFIER      shift and go to state 32
+    MINUS           shift and go to state 34
+    FLOAT           shift and go to state 38
+    INTEGER         shift and go to state 35
+    LPAREN          shift and go to state 33
+    FUNC            shift and go to state 31
+
+    expr                           shift and go to state 37
+    term                           shift and go to state 30
+    factor                         shift and go to state 36
+
+state 24
+
+    (27) BCast -> IDENTIFIER COMMA .
+
+    IDENTIFIER      reduce using rule 27 (BCast -> IDENTIFIER COMMA .)
+    EXIT            reduce using rule 27 (BCast -> IDENTIFIER COMMA .)
+    BIND            reduce using rule 27 (BCast -> IDENTIFIER COMMA .)
+    $end            reduce using rule 27 (BCast -> IDENTIFIER COMMA .)
+    DURING          reduce using rule 27 (BCast -> IDENTIFIER COMMA .)
+
+
+state 25
+
+    (26) BCast -> IDENTIFIER SEMICOLON .
+
+    IDENTIFIER      reduce using rule 26 (BCast -> IDENTIFIER SEMICOLON .)
+    EXIT            reduce using rule 26 (BCast -> IDENTIFIER SEMICOLON .)
+    BIND            reduce using rule 26 (BCast -> IDENTIFIER SEMICOLON .)
+    $end            reduce using rule 26 (BCast -> IDENTIFIER SEMICOLON .)
+    DURING          reduce using rule 26 (BCast -> IDENTIFIER SEMICOLON .)
+
+
+state 26
+
+    (19) Exprs -> Assgn Exprs .
+
+    DURING          reduce using rule 19 (Exprs -> Assgn Exprs .)
+    EXIT            reduce using rule 19 (Exprs -> Assgn Exprs .)
+    BIND            reduce using rule 19 (Exprs -> Assgn Exprs .)
+    $end            reduce using rule 19 (Exprs -> Assgn Exprs .)
+
+
+state 27
+
+    (21) Exprs -> BCast Exprs .
+
+    DURING          reduce using rule 21 (Exprs -> BCast Exprs .)
+    EXIT            reduce using rule 21 (Exprs -> BCast Exprs .)
+    BIND            reduce using rule 21 (Exprs -> BCast Exprs .)
+    $end            reduce using rule 21 (Exprs -> BCast Exprs .)
+
+
+state 28
+
+    (9) exit -> EXIT COLON Exprs .
+
+    BIND            reduce using rule 9 (exit -> EXIT COLON Exprs .)
+    $end            reduce using rule 9 (exit -> EXIT COLON Exprs .)
+
+
+state 29
+
+    (12) bind -> BIND COLON . binds
+    (13) bind -> BIND COLON .
+    (15) binds -> . IDENTIFIER COMMA IDENTIFIER SEMICOLON binds
+    (16) binds -> . IDENTIFIER COMMA IDENTIFIER COMMA binds
+    (17) binds -> . IDENTIFIER COMMA IDENTIFIER binds
+    (18) binds -> . IDENTIFIER COMMA IDENTIFIER
+
+    $end            reduce using rule 13 (bind -> BIND COLON .)
+    IDENTIFIER      shift and go to state 40
+
+    binds                          shift and go to state 39
+
+state 30
+
+    (31) expr -> term .
+    (32) term -> term . TIMES factor
+    (33) term -> term . DIVIDE factor
+
+    RPAREN          reduce using rule 31 (expr -> term .)
+    PLUS            reduce using rule 31 (expr -> term .)
+    MINUS           reduce using rule 31 (expr -> term .)
+    SEMICOLON       reduce using rule 31 (expr -> term .)
+    COMMA           reduce using rule 31 (expr -> term .)
+    IDENTIFIER      reduce using rule 31 (expr -> term .)
+    DURING          reduce using rule 31 (expr -> term .)
+    EXIT            reduce using rule 31 (expr -> term .)
+    BIND            reduce using rule 31 (expr -> term .)
+    $end            reduce using rule 31 (expr -> term .)
+    TIMES           shift and go to state 42
+    DIVIDE          shift and go to state 41
+
+
+state 31
+
+    (40) factor -> FUNC . LPAREN expr RPAREN
+
+    LPAREN          shift and go to state 43
+
+
+state 32
+
+    (35) factor -> IDENTIFIER .
+
+    TIMES           reduce using rule 35 (factor -> IDENTIFIER .)
+    DIVIDE          reduce using rule 35 (factor -> IDENTIFIER .)
+    SEMICOLON       reduce using rule 35 (factor -> IDENTIFIER .)
+    COMMA           reduce using rule 35 (factor -> IDENTIFIER .)
+    PLUS            reduce using rule 35 (factor -> IDENTIFIER .)
+    MINUS           reduce using rule 35 (factor -> IDENTIFIER .)
+    IDENTIFIER      reduce using rule 35 (factor -> IDENTIFIER .)
+    DURING          reduce using rule 35 (factor -> IDENTIFIER .)
+    EXIT            reduce using rule 35 (factor -> IDENTIFIER .)
+    BIND            reduce using rule 35 (factor -> IDENTIFIER .)
+    $end            reduce using rule 35 (factor -> IDENTIFIER .)
+    RPAREN          reduce using rule 35 (factor -> IDENTIFIER .)
+
+
+state 33
+
+    (39) factor -> LPAREN . expr RPAREN
+    (29) expr -> . expr PLUS term
+    (30) expr -> . expr MINUS term
+    (31) expr -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . factor
+    (35) factor -> . IDENTIFIER
+    (36) factor -> . MINUS factor
+    (37) factor -> . FLOAT
+    (38) factor -> . INTEGER
+    (39) factor -> . LPAREN expr RPAREN
+    (40) factor -> . FUNC LPAREN expr RPAREN
+
+    IDENTIFIER      shift and go to state 32
+    MINUS           shift and go to state 34
+    FLOAT           shift and go to state 38
+    INTEGER         shift and go to state 35
+    LPAREN          shift and go to state 33
+    FUNC            shift and go to state 31
+
+    expr                           shift and go to state 44
+    term                           shift and go to state 30
+    factor                         shift and go to state 36
+
+state 34
+
+    (36) factor -> MINUS . factor
+    (35) factor -> . IDENTIFIER
+    (36) factor -> . MINUS factor
+    (37) factor -> . FLOAT
+    (38) factor -> . INTEGER
+    (39) factor -> . LPAREN expr RPAREN
+    (40) factor -> . FUNC LPAREN expr RPAREN
+
+    IDENTIFIER      shift and go to state 32
+    MINUS           shift and go to state 34
+    FLOAT           shift and go to state 38
+    INTEGER         shift and go to state 35
+    LPAREN          shift and go to state 33
+    FUNC            shift and go to state 31
+
+    factor                         shift and go to state 45
+
+state 35
+
+    (38) factor -> INTEGER .
+
+    TIMES           reduce using rule 38 (factor -> INTEGER .)
+    DIVIDE          reduce using rule 38 (factor -> INTEGER .)
+    SEMICOLON       reduce using rule 38 (factor -> INTEGER .)
+    COMMA           reduce using rule 38 (factor -> INTEGER .)
+    PLUS            reduce using rule 38 (factor -> INTEGER .)
+    MINUS           reduce using rule 38 (factor -> INTEGER .)
+    IDENTIFIER      reduce using rule 38 (factor -> INTEGER .)
+    DURING          reduce using rule 38 (factor -> INTEGER .)
+    EXIT            reduce using rule 38 (factor -> INTEGER .)
+    BIND            reduce using rule 38 (factor -> INTEGER .)
+    $end            reduce using rule 38 (factor -> INTEGER .)
+    RPAREN          reduce using rule 38 (factor -> INTEGER .)
+
+
+state 36
+
+    (34) term -> factor .
+
+    TIMES           reduce using rule 34 (term -> factor .)
+    DIVIDE          reduce using rule 34 (term -> factor .)
+    SEMICOLON       reduce using rule 34 (term -> factor .)
+    COMMA           reduce using rule 34 (term -> factor .)
+    PLUS            reduce using rule 34 (term -> factor .)
+    MINUS           reduce using rule 34 (term -> factor .)
+    IDENTIFIER      reduce using rule 34 (term -> factor .)
+    DURING          reduce using rule 34 (term -> factor .)
+    EXIT            reduce using rule 34 (term -> factor .)
+    BIND            reduce using rule 34 (term -> factor .)
+    $end            reduce using rule 34 (term -> factor .)
+    RPAREN          reduce using rule 34 (term -> factor .)
+
+
+state 37
+
+    (23) Assgn -> IDENTIFIER EQUALS expr . SEMICOLON
+    (24) Assgn -> IDENTIFIER EQUALS expr . COMMA
+    (25) Assgn -> IDENTIFIER EQUALS expr .
+    (29) expr -> expr . PLUS term
+    (30) expr -> expr . MINUS term
+
+    SEMICOLON       shift and go to state 49
+    COMMA           shift and go to state 46
+    IDENTIFIER      reduce using rule 25 (Assgn -> IDENTIFIER EQUALS expr .)
+    BIND            reduce using rule 25 (Assgn -> IDENTIFIER EQUALS expr .)
+    $end            reduce using rule 25 (Assgn -> IDENTIFIER EQUALS expr .)
+    DURING          reduce using rule 25 (Assgn -> IDENTIFIER EQUALS expr .)
+    EXIT            reduce using rule 25 (Assgn -> IDENTIFIER EQUALS expr .)
+    PLUS            shift and go to state 47
+    MINUS           shift and go to state 48
+
+
+state 38
+
+    (37) factor -> FLOAT .
+
+    TIMES           reduce using rule 37 (factor -> FLOAT .)
+    DIVIDE          reduce using rule 37 (factor -> FLOAT .)
+    SEMICOLON       reduce using rule 37 (factor -> FLOAT .)
+    COMMA           reduce using rule 37 (factor -> FLOAT .)
+    PLUS            reduce using rule 37 (factor -> FLOAT .)
+    MINUS           reduce using rule 37 (factor -> FLOAT .)
+    IDENTIFIER      reduce using rule 37 (factor -> FLOAT .)
+    DURING          reduce using rule 37 (factor -> FLOAT .)
+    EXIT            reduce using rule 37 (factor -> FLOAT .)
+    BIND            reduce using rule 37 (factor -> FLOAT .)
+    $end            reduce using rule 37 (factor -> FLOAT .)
+    RPAREN          reduce using rule 37 (factor -> FLOAT .)
+
+
+state 39
+
+    (12) bind -> BIND COLON binds .
+
+    $end            reduce using rule 12 (bind -> BIND COLON binds .)
+
+
+state 40
+
+    (15) binds -> IDENTIFIER . COMMA IDENTIFIER SEMICOLON binds
+    (16) binds -> IDENTIFIER . COMMA IDENTIFIER COMMA binds
+    (17) binds -> IDENTIFIER . COMMA IDENTIFIER binds
+    (18) binds -> IDENTIFIER . COMMA IDENTIFIER
+
+    COMMA           shift and go to state 50
+
+
+state 41
+
+    (33) term -> term DIVIDE . factor
+    (35) factor -> . IDENTIFIER
+    (36) factor -> . MINUS factor
+    (37) factor -> . FLOAT
+    (38) factor -> . INTEGER
+    (39) factor -> . LPAREN expr RPAREN
+    (40) factor -> . FUNC LPAREN expr RPAREN
+
+    IDENTIFIER      shift and go to state 32
+    MINUS           shift and go to state 34
+    FLOAT           shift and go to state 38
+    INTEGER         shift and go to state 35
+    LPAREN          shift and go to state 33
+    FUNC            shift and go to state 31
+
+    factor                         shift and go to state 51
+
+state 42
+
+    (32) term -> term TIMES . factor
+    (35) factor -> . IDENTIFIER
+    (36) factor -> . MINUS factor
+    (37) factor -> . FLOAT
+    (38) factor -> . INTEGER
+    (39) factor -> . LPAREN expr RPAREN
+    (40) factor -> . FUNC LPAREN expr RPAREN
+
+    IDENTIFIER      shift and go to state 32
+    MINUS           shift and go to state 34
+    FLOAT           shift and go to state 38
+    INTEGER         shift and go to state 35
+    LPAREN          shift and go to state 33
+    FUNC            shift and go to state 31
+
+    factor                         shift and go to state 52
+
+state 43
+
+    (40) factor -> FUNC LPAREN . expr RPAREN
+    (29) expr -> . expr PLUS term
+    (30) expr -> . expr MINUS term
+    (31) expr -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . factor
+    (35) factor -> . IDENTIFIER
+    (36) factor -> . MINUS factor
+    (37) factor -> . FLOAT
+    (38) factor -> . INTEGER
+    (39) factor -> . LPAREN expr RPAREN
+    (40) factor -> . FUNC LPAREN expr RPAREN
+
+    IDENTIFIER      shift and go to state 32
+    MINUS           shift and go to state 34
+    FLOAT           shift and go to state 38
+    INTEGER         shift and go to state 35
+    LPAREN          shift and go to state 33
+    FUNC            shift and go to state 31
+
+    expr                           shift and go to state 53
+    term                           shift and go to state 30
+    factor                         shift and go to state 36
+
+state 44
+
+    (39) factor -> LPAREN expr . RPAREN
+    (29) expr -> expr . PLUS term
+    (30) expr -> expr . MINUS term
+
+    RPAREN          shift and go to state 54
+    PLUS            shift and go to state 47
+    MINUS           shift and go to state 48
+
+
+state 45
+
+    (36) factor -> MINUS factor .
+
+    TIMES           reduce using rule 36 (factor -> MINUS factor .)
+    DIVIDE          reduce using rule 36 (factor -> MINUS factor .)
+    SEMICOLON       reduce using rule 36 (factor -> MINUS factor .)
+    COMMA           reduce using rule 36 (factor -> MINUS factor .)
+    PLUS            reduce using rule 36 (factor -> MINUS factor .)
+    MINUS           reduce using rule 36 (factor -> MINUS factor .)
+    IDENTIFIER      reduce using rule 36 (factor -> MINUS factor .)
+    DURING          reduce using rule 36 (factor -> MINUS factor .)
+    EXIT            reduce using rule 36 (factor -> MINUS factor .)
+    BIND            reduce using rule 36 (factor -> MINUS factor .)
+    $end            reduce using rule 36 (factor -> MINUS factor .)
+    RPAREN          reduce using rule 36 (factor -> MINUS factor .)
+
+
+state 46
+
+    (24) Assgn -> IDENTIFIER EQUALS expr COMMA .
+
+    IDENTIFIER      reduce using rule 24 (Assgn -> IDENTIFIER EQUALS expr COMMA .)
+    BIND            reduce using rule 24 (Assgn -> IDENTIFIER EQUALS expr COMMA .)
+    $end            reduce using rule 24 (Assgn -> IDENTIFIER EQUALS expr COMMA .)
+    DURING          reduce using rule 24 (Assgn -> IDENTIFIER EQUALS expr COMMA .)
+    EXIT            reduce using rule 24 (Assgn -> IDENTIFIER EQUALS expr COMMA .)
+
+
+state 47
+
+    (29) expr -> expr PLUS . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . factor
+    (35) factor -> . IDENTIFIER
+    (36) factor -> . MINUS factor
+    (37) factor -> . FLOAT
+    (38) factor -> . INTEGER
+    (39) factor -> . LPAREN expr RPAREN
+    (40) factor -> . FUNC LPAREN expr RPAREN
+
+    IDENTIFIER      shift and go to state 32
+    MINUS           shift and go to state 34
+    FLOAT           shift and go to state 38
+    INTEGER         shift and go to state 35
+    LPAREN          shift and go to state 33
+    FUNC            shift and go to state 31
+
+    term                           shift and go to state 55
+    factor                         shift and go to state 36
+
+state 48
+
+    (30) expr -> expr MINUS . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . factor
+    (35) factor -> . IDENTIFIER
+    (36) factor -> . MINUS factor
+    (37) factor -> . FLOAT
+    (38) factor -> . INTEGER
+    (39) factor -> . LPAREN expr RPAREN
+    (40) factor -> . FUNC LPAREN expr RPAREN
+
+    IDENTIFIER      shift and go to state 32
+    MINUS           shift and go to state 34
+    FLOAT           shift and go to state 38
+    INTEGER         shift and go to state 35
+    LPAREN          shift and go to state 33
+    FUNC            shift and go to state 31
+
+    term                           shift and go to state 56
+    factor                         shift and go to state 36
+
+state 49
+
+    (23) Assgn -> IDENTIFIER EQUALS expr SEMICOLON .
+
+    IDENTIFIER      reduce using rule 23 (Assgn -> IDENTIFIER EQUALS expr SEMICOLON .)
+    BIND            reduce using rule 23 (Assgn -> IDENTIFIER EQUALS expr SEMICOLON .)
+    $end            reduce using rule 23 (Assgn -> IDENTIFIER EQUALS expr SEMICOLON .)
+    DURING          reduce using rule 23 (Assgn -> IDENTIFIER EQUALS expr SEMICOLON .)
+    EXIT            reduce using rule 23 (Assgn -> IDENTIFIER EQUALS expr SEMICOLON .)
+
+
+state 50
+
+    (15) binds -> IDENTIFIER COMMA . IDENTIFIER SEMICOLON binds
+    (16) binds -> IDENTIFIER COMMA . IDENTIFIER COMMA binds
+    (17) binds -> IDENTIFIER COMMA . IDENTIFIER binds
+    (18) binds -> IDENTIFIER COMMA . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 57
+
+
+state 51
+
+    (33) term -> term DIVIDE factor .
+
+    TIMES           reduce using rule 33 (term -> term DIVIDE factor .)
+    DIVIDE          reduce using rule 33 (term -> term DIVIDE factor .)
+    SEMICOLON       reduce using rule 33 (term -> term DIVIDE factor .)
+    COMMA           reduce using rule 33 (term -> term DIVIDE factor .)
+    PLUS            reduce using rule 33 (term -> term DIVIDE factor .)
+    MINUS           reduce using rule 33 (term -> term DIVIDE factor .)
+    IDENTIFIER      reduce using rule 33 (term -> term DIVIDE factor .)
+    DURING          reduce using rule 33 (term -> term DIVIDE factor .)
+    EXIT            reduce using rule 33 (term -> term DIVIDE factor .)
+    BIND            reduce using rule 33 (term -> term DIVIDE factor .)
+    $end            reduce using rule 33 (term -> term DIVIDE factor .)
+    RPAREN          reduce using rule 33 (term -> term DIVIDE factor .)
+
+
+state 52
+
+    (32) term -> term TIMES factor .
+
+    TIMES           reduce using rule 32 (term -> term TIMES factor .)
+    DIVIDE          reduce using rule 32 (term -> term TIMES factor .)
+    SEMICOLON       reduce using rule 32 (term -> term TIMES factor .)
+    COMMA           reduce using rule 32 (term -> term TIMES factor .)
+    PLUS            reduce using rule 32 (term -> term TIMES factor .)
+    MINUS           reduce using rule 32 (term -> term TIMES factor .)
+    IDENTIFIER      reduce using rule 32 (term -> term TIMES factor .)
+    DURING          reduce using rule 32 (term -> term TIMES factor .)
+    EXIT            reduce using rule 32 (term -> term TIMES factor .)
+    BIND            reduce using rule 32 (term -> term TIMES factor .)
+    $end            reduce using rule 32 (term -> term TIMES factor .)
+    RPAREN          reduce using rule 32 (term -> term TIMES factor .)
+
+
+state 53
+
+    (40) factor -> FUNC LPAREN expr . RPAREN
+    (29) expr -> expr . PLUS term
+    (30) expr -> expr . MINUS term
+
+    RPAREN          shift and go to state 58
+    PLUS            shift and go to state 47
+    MINUS           shift and go to state 48
+
+
+state 54
+
+    (39) factor -> LPAREN expr RPAREN .
+
+    TIMES           reduce using rule 39 (factor -> LPAREN expr RPAREN .)
+    DIVIDE          reduce using rule 39 (factor -> LPAREN expr RPAREN .)
+    SEMICOLON       reduce using rule 39 (factor -> LPAREN expr RPAREN .)
+    COMMA           reduce using rule 39 (factor -> LPAREN expr RPAREN .)
+    PLUS            reduce using rule 39 (factor -> LPAREN expr RPAREN .)
+    MINUS           reduce using rule 39 (factor -> LPAREN expr RPAREN .)
+    IDENTIFIER      reduce using rule 39 (factor -> LPAREN expr RPAREN .)
+    DURING          reduce using rule 39 (factor -> LPAREN expr RPAREN .)
+    EXIT            reduce using rule 39 (factor -> LPAREN expr RPAREN .)
+    BIND            reduce using rule 39 (factor -> LPAREN expr RPAREN .)
+    $end            reduce using rule 39 (factor -> LPAREN expr RPAREN .)
+    RPAREN          reduce using rule 39 (factor -> LPAREN expr RPAREN .)
+
+
+state 55
+
+    (29) expr -> expr PLUS term .
+    (32) term -> term . TIMES factor
+    (33) term -> term . DIVIDE factor
+
+    RPAREN          reduce using rule 29 (expr -> expr PLUS term .)
+    PLUS            reduce using rule 29 (expr -> expr PLUS term .)
+    MINUS           reduce using rule 29 (expr -> expr PLUS term .)
+    SEMICOLON       reduce using rule 29 (expr -> expr PLUS term .)
+    COMMA           reduce using rule 29 (expr -> expr PLUS term .)
+    IDENTIFIER      reduce using rule 29 (expr -> expr PLUS term .)
+    DURING          reduce using rule 29 (expr -> expr PLUS term .)
+    EXIT            reduce using rule 29 (expr -> expr PLUS term .)
+    BIND            reduce using rule 29 (expr -> expr PLUS term .)
+    $end            reduce using rule 29 (expr -> expr PLUS term .)
+    TIMES           shift and go to state 42
+    DIVIDE          shift and go to state 41
+
+
+state 56
+
+    (30) expr -> expr MINUS term .
+    (32) term -> term . TIMES factor
+    (33) term -> term . DIVIDE factor
+
+    RPAREN          reduce using rule 30 (expr -> expr MINUS term .)
+    PLUS            reduce using rule 30 (expr -> expr MINUS term .)
+    MINUS           reduce using rule 30 (expr -> expr MINUS term .)
+    SEMICOLON       reduce using rule 30 (expr -> expr MINUS term .)
+    COMMA           reduce using rule 30 (expr -> expr MINUS term .)
+    IDENTIFIER      reduce using rule 30 (expr -> expr MINUS term .)
+    DURING          reduce using rule 30 (expr -> expr MINUS term .)
+    EXIT            reduce using rule 30 (expr -> expr MINUS term .)
+    BIND            reduce using rule 30 (expr -> expr MINUS term .)
+    $end            reduce using rule 30 (expr -> expr MINUS term .)
+    TIMES           shift and go to state 42
+    DIVIDE          shift and go to state 41
+
+
+state 57
+
+    (15) binds -> IDENTIFIER COMMA IDENTIFIER . SEMICOLON binds
+    (16) binds -> IDENTIFIER COMMA IDENTIFIER . COMMA binds
+    (17) binds -> IDENTIFIER COMMA IDENTIFIER . binds
+    (18) binds -> IDENTIFIER COMMA IDENTIFIER .
+    (15) binds -> . IDENTIFIER COMMA IDENTIFIER SEMICOLON binds
+    (16) binds -> . IDENTIFIER COMMA IDENTIFIER COMMA binds
+    (17) binds -> . IDENTIFIER COMMA IDENTIFIER binds
+    (18) binds -> . IDENTIFIER COMMA IDENTIFIER
+
+    SEMICOLON       shift and go to state 60
+    COMMA           shift and go to state 59
+    $end            reduce using rule 18 (binds -> IDENTIFIER COMMA IDENTIFIER .)
+    IDENTIFIER      shift and go to state 40
+
+    binds                          shift and go to state 61
+
+state 58
+
+    (40) factor -> FUNC LPAREN expr RPAREN .
+
+    TIMES           reduce using rule 40 (factor -> FUNC LPAREN expr RPAREN .)
+    DIVIDE          reduce using rule 40 (factor -> FUNC LPAREN expr RPAREN .)
+    SEMICOLON       reduce using rule 40 (factor -> FUNC LPAREN expr RPAREN .)
+    COMMA           reduce using rule 40 (factor -> FUNC LPAREN expr RPAREN .)
+    PLUS            reduce using rule 40 (factor -> FUNC LPAREN expr RPAREN .)
+    MINUS           reduce using rule 40 (factor -> FUNC LPAREN expr RPAREN .)
+    IDENTIFIER      reduce using rule 40 (factor -> FUNC LPAREN expr RPAREN .)
+    DURING          reduce using rule 40 (factor -> FUNC LPAREN expr RPAREN .)
+    EXIT            reduce using rule 40 (factor -> FUNC LPAREN expr RPAREN .)
+    BIND            reduce using rule 40 (factor -> FUNC LPAREN expr RPAREN .)
+    $end            reduce using rule 40 (factor -> FUNC LPAREN expr RPAREN .)
+    RPAREN          reduce using rule 40 (factor -> FUNC LPAREN expr RPAREN .)
+
+
+state 59
+
+    (16) binds -> IDENTIFIER COMMA IDENTIFIER COMMA . binds
+    (15) binds -> . IDENTIFIER COMMA IDENTIFIER SEMICOLON binds
+    (16) binds -> . IDENTIFIER COMMA IDENTIFIER COMMA binds
+    (17) binds -> . IDENTIFIER COMMA IDENTIFIER binds
+    (18) binds -> . IDENTIFIER COMMA IDENTIFIER
+
+    IDENTIFIER      shift and go to state 40
+
+    binds                          shift and go to state 62
+
+state 60
+
+    (15) binds -> IDENTIFIER COMMA IDENTIFIER SEMICOLON . binds
+    (15) binds -> . IDENTIFIER COMMA IDENTIFIER SEMICOLON binds
+    (16) binds -> . IDENTIFIER COMMA IDENTIFIER COMMA binds
+    (17) binds -> . IDENTIFIER COMMA IDENTIFIER binds
+    (18) binds -> . IDENTIFIER COMMA IDENTIFIER
+
+    IDENTIFIER      shift and go to state 40
+
+    binds                          shift and go to state 63
+
+state 61
+
+    (17) binds -> IDENTIFIER COMMA IDENTIFIER binds .
+
+    $end            reduce using rule 17 (binds -> IDENTIFIER COMMA IDENTIFIER binds .)
+
+
+state 62
+
+    (16) binds -> IDENTIFIER COMMA IDENTIFIER COMMA binds .
+
+    $end            reduce using rule 16 (binds -> IDENTIFIER COMMA IDENTIFIER COMMA binds .)
+
+
+state 63
+
+    (15) binds -> IDENTIFIER COMMA IDENTIFIER SEMICOLON binds .
+
+    $end            reduce using rule 15 (binds -> IDENTIFIER COMMA IDENTIFIER SEMICOLON binds .)
+

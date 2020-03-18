@@ -1,0 +1,28 @@
+<hyxml type="Model">
+  <automaton name="default_automaton">
+    <variable name="x_out" scope="OUTPUT_DATA" type="" />
+    <variable name="y_out" scope="OUTPUT_DATA" type="" />
+    <variable name="x1" scope="LOCAL_DATA" type="Real" />
+    <variable name="x2" scope="LOCAL_DATA" type="Real" />
+    <variable name="x3" scope="LOCAL_DATA" type="Real" />
+    <variable name="x4" scope="LOCAL_DATA" type="Real" />
+    <variable name="x5" scope="LOCAL_DATA" type="Real" />
+    <variable name="x6" scope="LOCAL_DATA" type="Real" />
+    <variable name="x7" scope="LOCAL_DATA" type="Real" />
+    <mode id="0" initial="True" name="VO">
+      <dai equation="x1_dot= -0.9*x1 + 1.4000000000000001*x3" />
+      <dai equation="x2_dot= -1.5*x2 + 2.5*x5" />
+      <dai equation="x3_dot= -0.8*x2*x3 + 0.6000000000000001*x7" />
+      <dai equation="x4_dot= -1.3*x3*x4 + 2.0" />
+      <dai equation="x5_dot= 0.7000000000000001*x1 - 1.0*x4*x5" />
+      <dai equation="x6_dot= 0.30000000000000004*x1 - 3.1*x6" />
+      <dai equation="x7_dot= -1.5*x2*x7 + 1.8*x6" />
+      <dai equation="x_out= x5" />
+      <dai equation="y_out= x7" />
+    </mode>
+  </automaton>
+  <composition automata="default_automaton" />
+  <property initialSet="" name="" type="Safety" unsafeSet="">
+    <parameters kvalue="0.0" timehorizon="0.0" timestep="0.0" />
+  </property>
+</hyxml>

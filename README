@@ -1,0 +1,19 @@
+Installation Instructions
+
+NOTE: The instructions are written to install from the file "c2e2-2.0.0.tar.gz" into the 
+    directory "~/C2E2/". Please change these to the approriate file/directory if needed. 
+    
+
+1. Unzip the files into a local directory, such as ~/C2E2/
+    
+    tar -xvzf c2e2-2.0.0.tar.gz -C ~/C2E2/
+    
+2. Navigate to the that local directory and run installRequirements with superuser priveledges
+
+    cd ~/C2E2/
+    sudo ./installRequirements
+
+3. Run C2E2!
+
+    cd ~/C2E2/
+    sudo ./runC2E2

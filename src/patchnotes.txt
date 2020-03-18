@@ -1,0 +1,4 @@
+2.0.1 (October 2018)
+- Fixed an issue that allowed Transition ID editing in the GUI
+- Renamed "Property" collapsable window on the Plot Sidebar to "Requirement" for consistency
+- Filename of opened file now displays in the title bar

@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hyxml>
+<hyxml type="Model">
+  <automaton name="default_automaton">
+    <variable name="x1" scope="LOCAL_DATA" type="Real"/>
+    <variable name="x2" scope="LOCAL_DATA" type="Real"/>
+    <variable name="x3" scope="LOCAL_DATA" type="Real"/>
+    <variable name="x4" scope="LOCAL_DATA" type="Real"/>
+    <variable name="x5" scope="LOCAL_DATA" type="Real"/>
+    <variable name="x6" scope="LOCAL_DATA" type="Real"/>
+    <variable name="x7" scope="LOCAL_DATA" type="Real"/>
+      <mode id="0" initial="True" name="VO">
+        <dai equation="x1_dot = 1.4*x3-0.9*x1"/>
+        <dai equation="x2_dot = 2.5*x5-1.5*x2"/>
+        <dai equation="x3_dot = 0.6*x7-0.8*x3*x2"/>
+        <dai equation="x4_dot = 2.0-1.3*x4*x3"/>
+        <dai equation="x5_dot = 0.7*x1-1.0*x4*x5"/>
+        <dai equation="x6_dot = 0.3*x1-3.1*x6"/>
+        <dai equation="x7_dot = 1.8*x6-1.5*x7*x2"/>
+        <dai equation="x_out = x5"/>
+        <dai equation="y_out = x7"/>
+      </mode>
+  </automaton>
+  <composition automata="default_automaton" />
+  <property initialSet="VO:x1==1.2&amp;&amp; x2==1.05&amp;&amp;x3==1.5&amp;&amp;x4==2.4&amp;&amp;x5==1.0&amp;&amp;x6==0.1&amp;&amp;x7==0.45" name="7d_model_flowstar_test" type="0" unsafeSet="x1&gt;=10">
+    <parameters kvalue="2000.0" timehorizon="10.0" timestep="0.001"/>
+  </property>
+</hyxml>
