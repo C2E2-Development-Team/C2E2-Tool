@@ -1,1 +1,5 @@
-./obj/*.o
+obj/*.o
+work-dir/*
+src/frontend/gui/__pycache__/*
+src/frontend/mod/__pycache__/*
+eigen-eigen-323c052e1731/*

@@ -150,7 +150,7 @@ int LinearSet::hasIntersection(Point lower_point, Point upper_point)
 		}
 		else if(lower_point.getDimensions() == dimensions+1)
         {
-			glp_set_col_bnds(feas, i, GLP_DB, lower_point.getCoordinate(i-1),
+			glp_set_col_bnds(feas, i, GLP_DB, lower_point.getCoordinate(i),
                 upper_point.getCoordinate(i));
 		}
 	}
