@@ -79,7 +79,7 @@ def plot_line(data_points, horizontal_index, vertical_indices, variable_list,
         for j, y_axis in enumerate(y_axes):
             bokeh_plot.line(x_axis[i], y_axis[i], line_width=2, 
                 color=PLOT_COLORS[j-1], 
-                legend=variable_list[vertical_indices[j]])
+                legend_label=variable_list[vertical_indices[j]])
 
     # X - axis
     bokeh_plot.xaxis.axis_label = variable_list[horizontal_index]
@@ -119,7 +119,7 @@ def plot_quad(data_points, horizontal_index, vertical_indices, variable_list,
 
         bokeh_plot.quad(left=left, right=right, bottom=bottom, top=top, 
             color=PLOT_COLORS[i], line_width=0, line_alpha=0.35, fill_alpha=0.35,
-            legend=variable_list[vertical_indices[i]])
+            legend_label=variable_list[vertical_indices[i]])
 
     # X - axis
     bokeh_plot.xaxis.axis_label = variable_list[horizontal_index]
