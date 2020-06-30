@@ -69,6 +69,8 @@ int Model::simulateVerify()
         verifier.setRefineStrat(refine_strat);
         verifier.setRefineOrder(refine_order);
 
+        verifier.setLinearStrat(linear_strat);
+
         safety = verifier.verify();
     }
 
@@ -199,6 +201,14 @@ int Model::getAnnotType()
 void Model::setAnnotType(int val)
 {
     annot_type = val;
+}
+int Model::getLinearStrat()
+{
+    return linear_strat;
+}
+void Model::setLinearStrat(int val)
+{
+    linear_strat = val;
 }
 
 ////////// Double //////////

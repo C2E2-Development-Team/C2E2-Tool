@@ -569,6 +569,7 @@ class Session():
     # Simulation parameters
     simulator = ODEINT_FIX
     refine_strat = DEF_STRAT
+    linear_strat = GSTAR
 
     cpp_model = None
 

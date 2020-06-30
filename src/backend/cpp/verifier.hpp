@@ -49,6 +49,8 @@ public:
   void setRefineStrat(int val);
   void setRefineOrder(std::vector<int> vec);
 
+  void setLinearStrat(int val);
+
 private:
   int num_unsafe_equations; // LMBTODO Replace this with a size function
                             //         Not sure if there's a reason we can't
@@ -80,4 +82,6 @@ private:
 
   int refine_strat;
   vector<int> refine_order;
+
+  int linear_strat; // linear strategy choosed by user, 0 for gstar, 1 for rectangle
 };

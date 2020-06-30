@@ -660,6 +660,12 @@ def initialize_cpp_model(config, sim_bool):
 
     model.set_simulation_bool(sim_bool)
 
+    # Strategy for blowing reachtube for Linear Model 
+    if Session.linear_strat == GSTAR:
+        model.set_linear_strat(0)
+    else:
+        model.set_linear_strat(1)
+
     # Integer vectors
     mode_linear_dv  = IntegerVector()
     mode_linear_dv[:] = mode_linear
@@ -718,6 +724,12 @@ def initialize_cpp_model(config, sim_bool):
         code_file.write("    vector<int> refine_order_dv;\n")
         for i in range(len(refine_order)):
             code_file.write("    refine_order_dv.push_back("+ str(refine_order[i])+");\n")
+
+    if Session.linear_strat == GSTAR:
+        code_file.write("    cpp_Model.setLinearStrat(0);\n")
+    else:
+        code_file.write("    cpp_Model.setLinearStrat(1);\n")
+
     code_file.write("    cpp_Model.setModeLinear(refine_order_dv);\n")
 
     code_file.write("    cpp_Model.setSimulationBool("+str(sim_bool)+");\n")

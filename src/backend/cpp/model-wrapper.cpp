@@ -26,6 +26,7 @@ BOOST_PYTHON_MODULE(libc2e2)
         // Intenger / Boolean
         .def("set_simulation_bool", &Model::setSimulationBool)
         .def("set_refine_strat", &Model::setRefineStrat)
+        .def("set_linear_strat", &Model::setLinearStrat)
         .def("set_dimensions", &Model::setDimensions)
         .def("set_num_modes", &Model::setNumModes)
         .def("set_initial_mode_idx", &Model::setInitialModeIdx)

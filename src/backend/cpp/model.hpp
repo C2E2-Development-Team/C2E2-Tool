@@ -45,6 +45,8 @@ class Model
     void setNumUnsafeEqns(int val);
     int getAnnotType();  // LMBTODO: Add to config, move to Simulator
     void setAnnotType(int val);  // LMBTODO: Add to config, move to Simulator
+    int getLinearStrat(); // get linear strategy passed from frontend
+    void setLinearStrat(int val);
 
     double getAbsError();  // LMBTODO: Add to config, move to Simulator
     void setAbsError(double val);  // LMBTODO: Add to config, move to Simulator
@@ -88,6 +90,7 @@ class Model
 
     bool is_simulation;
     int refine_strat; /** TODOLMB Refine strategy? */
+    int linear_strat; /* Strategy used to bloat reachtube for linear model, 0 for gstar, 1 for rectangle */
     int dimensions;  /** Number of local variables */
     int num_modes;
     int initial_mode_idx;  // Previously initial_mode

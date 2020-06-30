@@ -543,25 +543,34 @@ class ModelSidebar(Frame):
         OptionMenu(self.prop_view, self.ref_var, '', *opts)\
                 .grid(row=6, column=1, columnspan=2, sticky=W+E)
 
+        # Strategy for Bloating Linear Model Reachtube
+        opts = (GSTAR, RECT)
+        Label(self.prop_view, text='Linear Model:').grid(row=7, sticky=W)
+        self.linear_var = StringVar()
+        self.linear_var.set(opts[0])
+        self.linear_var.trace_variable('w', self._callback_linear_strat)
+        OptionMenu(self.prop_view, self.linear_var, '', *opts)\
+                .grid(row=7, column=1, columnspan=2, sticky=W+E)
+
         # Initial set
-        Label(self.prop_view, text='Initial set:').grid(row=7, sticky=W)
+        Label(self.prop_view, text='Initial set:').grid(row=8, sticky=W)
         self.is_err = StringVar()
         self.is_err.set('')
-        Label(self.prop_view, textvariable=self.is_err).grid(row=7, column=1, sticky=W+E)
+        Label(self.prop_view, textvariable=self.is_err).grid(row=8, column=1, sticky=W+E)
         self.is_vl = ValidLabel(self.prop_view)
-        self.is_vl.grid(row=7, column=2, sticky=E)
+        self.is_vl.grid(row=8, column=2, sticky=E)
         self.initial_set = SetText(self.prop_view, height=65, callback=self._callback_is)
-        self.initial_set.grid(row=8, rowspan=4, columnspan=3, sticky=N+S+E+W)
+        self.initial_set.grid(row=9, rowspan=4, columnspan=3, sticky=N+S+E+W)
 
         # Unsafe set
-        Label(self.prop_view, text='Unsafe set:').grid(row=12, sticky=W)
+        Label(self.prop_view, text='Unsafe set:').grid(row=13, sticky=W)
         self.us_err = StringVar()
         self.us_err.set('')
-        Label(self.prop_view, textvariable=self.us_err).grid(row=12, column=1, sticky=E)
+        Label(self.prop_view, textvariable=self.us_err).grid(row=13, column=1, sticky=E)
         self.us_vl = ValidLabel(self.prop_view)
-        self.us_vl.grid(row=12, column=2, sticky=E)
+        self.us_vl.grid(row=13, column=2, sticky=E)
         self.unsafe_set = SetText(self.prop_view, height=65, callback=self._callback_us)
-        self.unsafe_set.grid(row=13, rowspan=4, columnspan=3, sticky=N+S+E+W)
+        self.unsafe_set.grid(row=14, rowspan=4, columnspan=3, sticky=N+S+E+W)
 
         return 
 
@@ -711,6 +720,12 @@ class ModelSidebar(Frame):
         """ Update Session refine strategy """
         
         Session.refine_strat = self.ref_var.get()
+        
+        return
+
+    def _callback_linear_strat(self, *args):
+        """ Update Session Linear Reachtube Bloat strategy """
+        Session.linear_strat = self.linear_var.get()
         
         return
 

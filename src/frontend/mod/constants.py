@@ -18,6 +18,8 @@ ODEINT_ADP = 'ODEINT: adaptive step'
 CAPD = 'CAPD'
 DEF_STRAT = 'Default Strategy'
 USR_STRAT = 'User Strategy'
+GSTAR = 'Generalized Star'
+RECT = 'Rectangle'
 
 #File types
 MDL_FILE = '.mdl'

@@ -380,19 +380,23 @@ void Verifier::bloatReachTube(ReachTube &simulation_tube,
     }
     else
     {
-        // ReachTube bloated_tube;
-        // bloated_tube = simulation_tube.bloatReachTube(ref_delta_array,
-        //                                               annotation);
-        // bloated_tube.printReachTube("../work-dir/reachtube.dat", 0);
-        simulation_tube = ReachTube();
-        gstar star = gstar(curItrRepPoint);
-        star.normalize();
-        gReachTube tube(star);
-        tube.setSimulator(simulator);
-        // tube.setSimulatorStr(getExecutable());
-        tube.computeSimulationTube();
-        tube.bloatTube();
-        tube.tubeToReachTube(simulation_tube);
+        // User defined strategy for bloating reachtube(for linear model), 0 for gstar, 1 for rectangle
+        if (linear_strat == 0) {
+            simulation_tube = ReachTube();
+            gstar star = gstar(curItrRepPoint);
+            star.normalize();
+            gReachTube tube(star);
+            tube.setSimulator(simulator);
+            // tube.setSimulatorStr(getExecutable());
+            tube.computeSimulationTube();
+            tube.bloatTube();
+            tube.tubeToReachTube(simulation_tube);
+        } else if (linear_strat == 1) {
+            ReachTube bloated_tube;
+            simulation_tube = simulation_tube.bloatReachTube(ref_delta_array,
+                                                          annotation);
+            simulation_tube.printReachTube("../work-dir/reachtube.dat", 0);
+        }
     }
     std::cout << "Bloating Complete." << std::endl;
 }
@@ -564,6 +568,11 @@ void Verifier::setModeLinear(std::vector<int> vec)
 void Verifier::setRefineStrat(int val)
 {
     refine_strat = val;
+}
+
+void Verifier::setLinearStrat(int val)
+{
+    linear_strat = val;
 }
 
 void Verifier::setRefineOrder(std::vector<int> order)
