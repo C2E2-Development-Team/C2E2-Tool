@@ -634,7 +634,7 @@ class TransitionEntry(PopupEntry):
         self.source_option_menu.grid(row=3, column=1, sticky=W+E)        
         self.destination_option_menu = OptionMenu(self, 
                                                   self.destination_str, 
-                                                  self.mode_list[1], 
+                                                  self.mode_list[0], 
                                                   *self.mode_list)
         self.destination_option_menu.grid(row=4, column=1, sticky=W+E)
 
