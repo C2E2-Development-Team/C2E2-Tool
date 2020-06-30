@@ -292,7 +292,7 @@ class MenuBar(Menu):
         else:
             FileHandler.save()
             # Refresh Editor Tab
-            self.editor_tab.open_xml()
+            self.notebook.editor_tab.open_xml()
         
         return
 
