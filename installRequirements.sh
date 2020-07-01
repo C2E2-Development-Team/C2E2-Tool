@@ -74,7 +74,7 @@ apt-get install -y python-gnuplot
 
 # Bokeh plotting requirements
 
-sudo pip3 install bokeh
+sudo pip3 install bokeh==1.4.0
 sudo pip3 install selenium
 sudo apt install nodejs-legacy
 sudo apt install npm
