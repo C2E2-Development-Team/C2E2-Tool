@@ -26,5 +26,5 @@ C2E2 implements the simulation-based verification approach described in the seq
 
 
 ## Supported by
--National Science Foundation
--Air Force Office of Scientific Research
+- National Science Foundation
+- Air Force Office of Scientific Research
