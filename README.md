@@ -4,7 +4,7 @@ Compare Execute Check Engine (C2E2) is a tool for verifying hybrid automata. Hyb
 
 See [home](http://publish.illinois.edu/c2e2-tool/) has a  more information about background theory, examples, related publications, and results.
 
-See [C2E2 user manual]() for detailed usage instructions.
+See [C2E2 user's guide](http://publish.illinois.edu/c2e2-tool/files/2020/11/C2E2Manual_ver2.pdf) for detailed usage instructions.
 
 
 ## Current version
@@ -16,7 +16,7 @@ Version 2.1 Summer 2020.
 C2E2 implements the simulation-based verification approach described in the sequence of publications that appeared in Emsoft, CAV, TACAS, ATVA 2013-2018. Features in version 2.1 (2020):
 
 - Open source release
-- Command line operations
+- Command-line operations
 - Compositional models
 - GUI and text-based hybrid model editor (.hyxml)
 - Improved model parsing error messaging
@@ -24,4 +24,7 @@ C2E2 implements the simulation-based verification approach described in the seq
 - Dropped support for Stateflow
 
 
-## Contributros
+
+## Supported by
+-National Science Foundation
+-Air Force Office of Scientific Research
